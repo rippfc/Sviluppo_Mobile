@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/CardColor"
-    tools:context=".Login">
+    tools:context=".Register">
     <!--devo aggiungere un immagine-->
 
 
@@ -43,13 +43,32 @@
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="cursive"
-                    android:text="LOGIN"
+                    android:text="REGISTRATI"
                     android:textColor="@color/primaryTextColor"
                     android:textSize="25sp"
                     android:textStyle="bold">
 
                 </TextView>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp">
+
+                    <EditText
+                        android:id="@+id/Nome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:hint="Nome"
+                        android:inputType="textPersonName"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -73,7 +92,6 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
 
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -93,35 +111,10 @@
                         android:singleLine="true"
                         android:textColor="@android:color/black" />
 
-                    <androidx.appcompat.widget.AppCompatCheckBox
-                        android:id="@+id/radio1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:text="Ricordami"
-                        android:textColor="@color/primaryTextColor"
-                        android:textSize="15sp"
-                        android:textStyle="bold">
-
-                    </androidx.appcompat.widget.AppCompatCheckBox>
-
-                    <TextView
-                        android:id="@+id/text_To_reset"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:layout_gravity="end"
-                        android:layout_marginEnd="20dp"
-                        android:textSize="12dp"
-                        android:layout_marginRight="15dp"
-                        android:text="Password dimenticata?"
-                        android:textColor="@color/primaryTextColor"
-                        android:textStyle="bold"/>
-
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/login_button"
+                    android:id="@+id/sign_up_button"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -129,21 +122,21 @@
                     android:background="@drawable/circular_button"
                     android:fontFamily="sans-serif-condensed-medium"
                     android:gravity="center"
-                    android:text="LOGIN"
+                    android:text="REGISTRATI"
                     android:textColor="@color/whiteTextColor"
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/text_To_Register"
+                    android:id="@+id/text_To_Login"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
-                    android:text="Non hai ancora un account? Registrati"
+                    android:text="Hai già un account? effettua il Login"
                     android:textAlignment="center"
                     android:textColor="@color/primaryTextColor"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
