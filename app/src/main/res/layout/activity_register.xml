@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/CardColor"
-    tools:context=".Register">
+    tools:context=".Aut_Controller.Register">
     <!--devo aggiungere un immagine-->
 
 
@@ -38,6 +38,7 @@
 
                 <TextView
                     android:id="@+id/textview3"
+                    android:padding="25dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -56,13 +57,13 @@
                     android:layout_marginTop="5dp">
 
                     <EditText
-                        android:id="@+id/Nome"
+                        android:id="@+id/txNome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
                         android:fontFamily="sans-serif-condensed-medium"
-                        android:hint="Nome"
+                        android:hint="Nome "
                         android:inputType="textPersonName"
                         android:maxLines="1"
                         android:singleLine="true"
@@ -77,7 +78,7 @@
                     android:layout_marginTop="5dp">
 
                     <EditText
-                        android:id="@+id/email"
+                        android:id="@+id/txEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
@@ -98,14 +99,35 @@
                     android:layout_marginTop="5dp">
 
                     <EditText
-                        android:id="@+id/password"
+                        android:id="@+id/txPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="20dp"
                         android:layout_marginEnd="20dp"
                         android:focusableInTouchMode="true"
                         android:fontFamily="sans-serif-condensed-medium"
-                        android:hint="Password"
+                        android:hint="Password (min 6 caratteri)"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp">
+
+                    <EditText
+                        android:id="@+id/txRipetiPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:focusableInTouchMode="true"
+                        android:fontFamily="sans-serif-condensed-medium"
+                        android:hint="Ripeti Password"
                         android:inputType="textPassword"
                         android:maxLines="1"
                         android:singleLine="true"
@@ -114,7 +136,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/sign_up_button"
+                    android:id="@+id/btn_regiter"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -133,7 +155,8 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
-                    android:text="Hai già un account? effettua il Login"
+                    android:text="Hai già un account? Effettua il Login"
+                    android:textSize="20dp"
                     android:textAlignment="center"
                     android:textColor="@color/primaryTextColor"
                     android:textStyle="bold" />

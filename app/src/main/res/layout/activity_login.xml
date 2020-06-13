@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/CardColor"
-    tools:context=".Login">
+    tools:context=".Aut_Controller.Login">
     <!--devo aggiungere un immagine-->
 
 
@@ -38,6 +38,7 @@
 
                 <TextView
                     android:id="@+id/textview3"
+                    android:padding="25dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -49,7 +50,6 @@
                     android:textStyle="bold">
 
                 </TextView>
-
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -73,7 +73,6 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
 
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -93,35 +92,30 @@
                         android:singleLine="true"
                         android:textColor="@android:color/black" />
 
-                    <androidx.appcompat.widget.AppCompatCheckBox
-                        android:id="@+id/radio1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:text="Ricordami"
-                        android:textColor="@color/primaryTextColor"
-                        android:textSize="15sp"
-                        android:textStyle="bold">
-
-                    </androidx.appcompat.widget.AppCompatCheckBox>
-
-                    <TextView
-                        android:id="@+id/text_To_reset"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
-                        android:layout_gravity="end"
-                        android:layout_marginEnd="20dp"
-                        android:textSize="12dp"
-                        android:layout_marginRight="15dp"
-                        android:text="Password dimenticata?"
-                        android:textColor="@color/primaryTextColor"
-                        android:textStyle="bold"/>
-
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <TextView
+                    android:id="@+id/text_To_reset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginStart="20dp"
+                    android:text="Password dimenticata?"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="31dp"
+                    android:layout_height="31dp"
+                    android:layout_gravity="center"
+                    android:visibility="invisible"/>
+
                 <Button
-                    android:id="@+id/login_button"
+                    android:id="@+id/btn_login"
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -141,9 +135,10 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
                     android:text="Non hai ancora un account? Registrati"
+                    android:textSize="20dp"
                     android:textAlignment="center"
                     android:textColor="@color/primaryTextColor"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
