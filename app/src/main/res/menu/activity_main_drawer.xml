@@ -6,15 +6,42 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:icon="@drawable/ic_home_black"
+            android:title="@string/menu_home"/>
+
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:id="@+id/nav_percorso_registrato"
+            android:icon="@drawable/ic_menu_percorso"
+            android:title="@string/percorso_registrato" />
+
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/nav_sessioni_completate"
+            android:icon="@drawable/ic_menu_percorso_completato"
+            android:title="@string/sessioni_completate" />
+
+        <item android:title="Account">
+            <menu>
+                <item
+                    android:id="@+id/nav_respass"
+                    android:icon="@drawable/ic_vpn_key_24"
+                    android:title="Cambia Password" />
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@drawable/ic_exit_to_app_24"
+                    android:title="SignOut" />
+            </menu>
+        </item>
+
+
+        <item android:title="Info">
+            <menu>
+                <item
+                    android:id="@+id/nav_info"
+                    android:icon="@drawable/ic_nav_info_24"
+                    android:title="Informazioni" />
+            </menu>
+        </item>
+
+
     </group>
 </menu>

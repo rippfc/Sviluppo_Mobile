@@ -8,10 +8,12 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
-    <string name="menu_slideshow">Slideshow</string>
     <string name="menu_gallery">Gallery</string>
     <string name="email_unverified">Inserisci un email valida!</string>
     <string name="minimum_password">Password troppo corta, inserisci minimo 6 caratteri</string>
     <string name="auth_failed">Autenticazione fallita, controlla Email e password o registrati</string>
-    <string name="percorso_registrato">Percorso registrato</string>
+    <string name="percorso_registrato">Percorso Registrato</string>
+    <string name="sessioni_completate">Sessioni Completate</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -12,14 +12,16 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="uniba.tesi.magicwand.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_percorso_registrato"
+        android:name="uniba.tesi.magicwand.ui.PercorsoRegistrato"
+        android:label="Percorso Registrato"
+        tools:layout="@layout/fragment_percorso_registrato" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="uniba.tesi.magicwand.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_sessioni_completate"
+        android:name="uniba.tesi.magicwand.ui.SessioniCompletate"
+        android:label="Sessioni Completate"
+        tools:layout="@layout/fragment_sessioni_completate" />
+
+
 </navigation>
