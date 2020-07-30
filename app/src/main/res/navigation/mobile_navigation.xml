@@ -23,5 +23,11 @@
         android:label="Sessioni Completate"
         tools:layout="@layout/fragment_sessioni_completate" />
 
+    <fragment
+        android:id="@+id/nav_info"
+        android:name="uniba.tesi.magicwand.ui.Info"
+        android:label="Informazioni App"
+        tools:layout="@layout/fragment_info" />
+
 
 </navigation>

@@ -1,10 +1,14 @@
 package uniba.tesi.magicwand;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -24,6 +28,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import uniba.tesi.magicwand.Aut_Controller.Login;
 import uniba.tesi.magicwand.Aut_Controller.ResetPassword;
+import uniba.tesi.magicwand.Create_Quiz.CreateNewSession;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,16 +48,16 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {//azione pulsante
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                showAlertDialog();
             }
         });
+
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_percorso_registrato, R.id.nav_sessioni_completate)
+                R.id.nav_home, R.id.nav_percorso_registrato, R.id.nav_sessioni_completate,R.id.nav_info)
                 .setDrawerLayout(drawer)
                 .build();
         final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -75,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this, Login.class));
                         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         finish();
-                        Toast.makeText(getApplicationContext(), "LOGOUT", Toast.LENGTH_SHORT).show();
                         break;
                 }
                 //This is for maintaining the behavior of the Navigation view
@@ -101,6 +105,52 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    private void showAlertDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
+        builder.setTitle("Nuovo Percorso");
+        builder.setMessage("Inserisci il nome della sessione");
+        final EditText inputText = new EditText(this);
+        inputText.setInputType(InputType.TYPE_CLASS_TEXT);
+
+        builder.setView(inputText)
+                .setPositiveButton("AGGIUNGI", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                })
+                .setNegativeButton("CANCELLA", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.setCancelable(false);
+        alertDialog.show();
+
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String input=inputText.getText().toString().trim();
+                if(input.isEmpty()){
+                    inputText.setError("Inserisci un titolo valido");
+                }else{
+                    setTitle(input);
+
+                    Intent intent=new Intent(MainActivity.this, CreateNewSession.class);
+                    intent.putExtra("Title",input);
+                    startActivity(intent);
+                    //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                    finish();// TODO: da modificare non ne sono sicuro
+                    alertDialog.dismiss();
+                }
+            }
+        });
+
+    }
+
 
 
 }

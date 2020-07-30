@@ -20,16 +20,15 @@
 
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/card3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/card3"
-            android:visibility="visible"
-            android:layout_marginTop="30dp"
-            android:padding="20dp"
-            app:cardUseCompatPadding="true"
-            app:cardElevation="7dp"
             android:background="@drawable/circular_card"
-            app:cardCornerRadius="7dp">
+            android:visibility="visible"
+            app:cardCornerRadius="7dp"
+            app:cardElevation="1dp"
+            app:cardMaxElevation="8dp"
+            app:cardUseCompatPadding="true">
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -38,12 +37,12 @@
 
                 <TextView
                     android:id="@+id/textview3"
-                    android:padding="25dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginBottom="10dp"
                     android:fontFamily="cursive"
+                    android:padding="25dp"
                     android:text="REGISTRATI"
                     android:textColor="@color/primaryTextColor"
                     android:textSize="25sp"
@@ -96,7 +95,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="5dp"
+                    app:passwordToggleEnabled="true">
 
                     <EditText
                         android:id="@+id/txPassword"
@@ -117,7 +117,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="5dp">
+                    android:layout_marginTop="5dp"
+                    app:passwordToggleEnabled="true">
 
                     <EditText
                         android:id="@+id/txRipetiPassword"
@@ -142,24 +143,13 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/circular_button"
+                    android:elevation="4dp"
                     android:fontFamily="sans-serif-condensed-medium"
                     android:gravity="center"
                     android:text="REGISTRATI"
                     android:textColor="@color/whiteTextColor"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/text_To_Login"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="10dp"
-                    android:text="Hai già un account? Effettua il Login"
-                    android:textSize="20dp"
-                    android:textAlignment="center"
-                    android:textColor="@color/primaryTextColor"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"/>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -13,6 +13,9 @@
         <activity android:name=".Aut_Controller.ResetPassword"
             android:theme="@style/AppTheme.NoActionBar"/>
 
+        <activity android:name=".Create_Quiz.CreateNewSession"
+            android:theme="@style/AppTheme" />
+
         <activity android:name=".Aut_Controller.Register"
             android:theme="@style/AppTheme.NoActionBar"/>
 

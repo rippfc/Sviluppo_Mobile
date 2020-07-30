@@ -13,4 +13,6 @@
     <!--colros for card-->
     <color name="CardColor">#ededed</color>
 
+    <color name="dialogButtonText">#008577</color>
+
 </resources>

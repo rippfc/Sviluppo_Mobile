@@ -23,7 +23,6 @@ public class Register extends AppCompatActivity {
 
     private EditText inputEmail,inputPassword,inputName,repeatPassword;
     private Button btRegister;
-    private TextView txToLogin;
 
     private FirebaseAuth mAuth;
 
@@ -65,15 +64,6 @@ public class Register extends AppCompatActivity {
             }
         });
 
-        txToLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Register.this, Login.class));
-                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                finish();
-            }
-        });
-
     }
 
     private void initUI() {
@@ -82,7 +72,6 @@ public class Register extends AppCompatActivity {
         inputPassword=(EditText)findViewById(R.id.txPassword);
         repeatPassword=(EditText)findViewById(R.id.txRipetiPassword);
         btRegister=(Button)findViewById(R.id.btn_regiter);
-        txToLogin=(TextView)findViewById(R.id.text_To_Login);
     }
 
     @Override
