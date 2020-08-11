@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private FirebaseAuth auth;
+    private TextView user,status;
+    private ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +45,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
+        final FloatingActionButton fab = findViewById(R.id.fab);
         auth= FirebaseAuth.getInstance();
+
+
+
+
+
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +63,14 @@ public class MainActivity extends AppCompatActivity {
 
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
+        View header = navigationView.getHeaderView(0);//per settare stato connessine e image
+        status=header.findViewById(R.id.txStatus);
+        user=header.findViewById(R.id.txUser);
+        image=header.findViewById(R.id.imageStatus);
+        setTextUser(user,status,image);
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -75,12 +92,19 @@ public class MainActivity extends AppCompatActivity {
                         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         break;
 
+                    case R.id.nav_info:
+                        fab.hide();//nascondere fab
+                        break;
+
                     case R.id.nav_logout:
                         auth.signOut();
                         startActivity(new Intent(MainActivity.this, Login.class));
                         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         finish();
                         break;
+
+                    default:
+                        fab.show();//per mostrare fab
                 }
                 //This is for maintaining the behavior of the Navigation view
                 NavigationUI.onNavDestinationSelected(item,navController);
@@ -90,6 +114,12 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    private void setTextUser(TextView txS, TextView txU, ImageView im) {//verifica lo stato dell'utente e la connessione al dispositivo
+        txS.setText(auth.getCurrentUser().getEmail());
+        im.setImageResource(R.drawable.ic_connection_success);//setta l'immagine di connessione al dispositivo
+
     }
 
     @Override
@@ -108,18 +138,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void showAlertDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
-        builder.setTitle("Nuovo Percorso");
-        builder.setMessage("Inserisci il nome della sessione");
+        builder.setTitle(R.string.title);
+        builder.setMessage(R.string.message);
         final EditText inputText = new EditText(this);
         inputText.setInputType(InputType.TYPE_CLASS_TEXT);
 
         builder.setView(inputText)
-                .setPositiveButton("AGGIUNGI", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.btPositive, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                     }
                 })
-                .setNegativeButton("CANCELLA", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.btCancella, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
@@ -135,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String input=inputText.getText().toString().trim();
                 if(input.isEmpty()){
-                    inputText.setError("Inserisci un titolo valido");
+                    inputText.setError(getString(R.string.errorInput));
                 }else{
                     setTitle(input);
 

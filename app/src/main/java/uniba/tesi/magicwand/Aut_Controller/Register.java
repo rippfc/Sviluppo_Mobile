@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -46,17 +45,14 @@ public class Register extends AppCompatActivity {
 
                 //TODO:da sistemare
                 if(nome.isEmpty()||nome.length()<3) {
-                    inputName.setError("minimo 3 caratteri");
-                    Toast.makeText(getApplicationContext(), "Nome non Valido", Toast.LENGTH_LONG).show();
+                    inputName.setError(getString(R.string.errorName));
                     return;
                 }else if(email.isEmpty()||!(email.contains("@"))){
-                    inputEmail.setError("Email non Valida");
-                   // Toast.makeText(getApplicationContext(),"Email non Valida",Toast.LENGTH_LONG).show();
+                    inputEmail.setError(getString(R.string.errorEmail));
                 }else if(password.isEmpty()||password.length()<6){
-                    inputPassword.setError("Password non Valida");
-                    //Toast.makeText(getApplicationContext(),"Password non Valida",Toast.LENGTH_LONG).show();
+                    inputPassword.setError(getString(R.string.errorPassword));
                 }else if (!ripetiPass.equals(password)){
-                    repeatPassword.setError("Password non Valida");
+                    repeatPassword.setError(getString(R.string.errorPassword));
                 }else{
                     createFirebaseUser(email,password,nome);
                 }
@@ -90,12 +86,12 @@ public class Register extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             mAuth.getCurrentUser().sendEmailVerification();
-                            Toast.makeText(Register.this, "Email di verifica inviata. Controlla la tua email",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Register.this, R.string.checkEmail,Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(Register.this,Login.class));
                             finish();
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(Register.this, "Registrazione fallita",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Register.this, R.string.errorNewUser,Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

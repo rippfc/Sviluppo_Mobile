@@ -38,8 +38,8 @@ public class ResetPassword extends AppCompatActivity {
             public void onClick(View v) {
                 String email = inputEmail.getText().toString().trim();
 
-                if (email.isEmpty()) {
-                    inputEmail.setError("Inserisci un email valida");
+                if (email.isEmpty()||!email.contains("@")) {
+                    inputEmail.setError(getString(R.string.errorEmail));
                     return;
                 }
 
@@ -48,9 +48,9 @@ public class ResetPassword extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(ResetPassword.this, "Controlla l'email\nsegui le istruzioni per reimpostare la password!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ResetPassword.this, R.string.resetEmail, Toast.LENGTH_SHORT).show();
                         } else {
-                            Toast.makeText(ResetPassword.this, "Email non registrata!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ResetPassword.this, R.string.emailCheck, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

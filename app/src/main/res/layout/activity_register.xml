@@ -1,72 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:background="@color/CardColor"
     tools:context=".Aut_Controller.Register">
     <!--devo aggiungere un immagine-->
 
 
-
-    <RelativeLayout
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_centerInParent="true">
 
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card3"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="10dp"
             android:background="@drawable/circular_card"
-            android:visibility="visible"
-            app:cardCornerRadius="7dp"
-            app:cardElevation="1dp"
-            app:cardMaxElevation="8dp"
-            app:cardUseCompatPadding="true">
+            android:orientation="vertical"
+            android:elevation="1dp">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <TextView
+                android:id="@+id/textview3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:fontFamily="cursive"
+                android:gravity="center"
+                android:padding="25dp"
+                android:text="@string/registrati"
+                android:textColor="@color/primaryTextColor"
+                android:textSize="30sp"
+                android:textStyle="bold"/>
 
-                <TextView
-                    android:id="@+id/textview3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="10dp"
-                    android:fontFamily="cursive"
-                    android:padding="25dp"
-                    android:text="REGISTRATI"
-                    android:textColor="@color/primaryTextColor"
-                    android:textSize="25sp"
-                    android:textStyle="bold">
-
-                </TextView>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_margin="10dp">
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txNome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
                         android:fontFamily="sans-serif-condensed-medium"
-                        android:hint="Nome "
+                        android:hint="@string/nome"
                         android:inputType="textPersonName"
                         android:maxLines="1"
-                        android:singleLine="true"
-                        android:textColor="@android:color/black" />
+                        android:singleLine="true" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,20 +58,17 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp">
+                    android:layout_margin="10dp">
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
                         android:fontFamily="sans-serif-condensed-medium"
-                        android:hint="Email"
+                        android:hint="@string/email"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
-                        android:singleLine="true"
-                        android:textColor="@android:color/black" />
+                        android:singleLine="true"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,44 +76,36 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_margin="10dp"
                     app:passwordToggleEnabled="true">
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:focusableInTouchMode="true"
                         android:fontFamily="sans-serif-condensed-medium"
-                        android:hint="Password (min 6 caratteri)"
+                        android:hint="@string/password_min_6_caratteri"
                         android:inputType="textPassword"
                         android:maxLines="1"
-                        android:singleLine="true"
-                        android:textColor="@android:color/black" />
+                        android:singleLine="true" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
                     app:passwordToggleEnabled="true">
 
-                    <EditText
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txRipetiPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginEnd="20dp"
-                        android:focusableInTouchMode="true"
                         android:fontFamily="sans-serif-condensed-medium"
-                        android:hint="Ripeti Password"
+                        android:hint="@string/ripeti_password"
                         android:inputType="textPassword"
                         android:maxLines="1"
-                        android:singleLine="true"
-                        android:textColor="@android:color/black" />
+                        android:singleLine="true"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -141,21 +114,19 @@
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="15dp"
+                    android:layout_margin="10dp"
                     android:background="@drawable/circular_button"
                     android:elevation="4dp"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:gravity="center"
-                    android:text="REGISTRATI"
+                    android:text="@string/registrati"
                     android:textColor="@color/whiteTextColor"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="10dp"/>
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
 
-        </androidx.cardview.widget.CardView>
 
-    </RelativeLayout>
+        </LinearLayout>
 
-</ScrollView>
+    </ScrollView>
+
+</RelativeLayout>

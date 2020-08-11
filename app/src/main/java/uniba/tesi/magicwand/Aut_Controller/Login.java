@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +18,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import uniba.tesi.magicwand.MainActivity;
 import uniba.tesi.magicwand.R;
@@ -49,7 +47,6 @@ public class Login extends AppCompatActivity {
                 startActivity(new Intent(Login.this, MainActivity.class));
                 finish();
             }else {
-                Toast.makeText(Login.this, R.string.email_unverified,Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut();
                 finish();
             }
@@ -82,10 +79,10 @@ public class Login extends AppCompatActivity {
                 String password=inputPassword.getText().toString();
 
                 if(email.isEmpty()||!email.contains("@")){
-                    inputEmail.setError("Inserisci un indirizzo email valido");
+                    inputEmail.setError(getString(R.string.errorEmail));
                    return;
                 }else if(password.isEmpty()||password.length()<6){
-                    inputPassword.setError("Password non valida");
+                    inputPassword.setError(getString(R.string.errorPassword));
                     return;
                 }else{
                     loginUser(email,password);
@@ -102,7 +99,7 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         loginProgressBar.setVisibility(View.VISIBLE);
                         if (!task.isSuccessful()) {
-                            Toast.makeText(Login.this, "Autenticazione fallita\nControlla email e password",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login.this, R.string.errorLogin,Toast.LENGTH_SHORT).show();
                             loginProgressBar.setVisibility(View.INVISIBLE);
 
                         } else {
@@ -111,7 +108,7 @@ public class Login extends AppCompatActivity {
                                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                                 finish();
                             }else {
-                                Toast.makeText(Login.this, "Email non ancora verificata.\nControlla la tua email",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login.this, R.string.errorCheck,Toast.LENGTH_SHORT).show();
                                 FirebaseAuth.getInstance().signOut();
                                 loginProgressBar.setVisibility(View.INVISIBLE);
                             }

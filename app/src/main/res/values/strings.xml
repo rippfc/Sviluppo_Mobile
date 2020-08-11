@@ -1,19 +1,73 @@
 <resources>
     <string name="app_name">Magic Wand</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="nav_header_title" translatable="false">Android Studio</string>
+    <string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
+    <string name="action_settings" translatable="false">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="email_unverified">Inserisci un email valida!</string>
-    <string name="minimum_password">Password troppo corta, inserisci minimo 6 caratteri</string>
-    <string name="auth_failed">Autenticazione fallita, controlla Email e password o registrati</string>
+    <!-- Drawer strings -->
+    <string name="menu_home" translatable="false">Home</string>
     <string name="percorso_registrato">Percorso Registrato</string>
     <string name="sessioni_completate">Sessioni Completate</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cambia_password">Cambia Password</string>
+    <string name="logout" translatable="false">Logout</string>
+    <string name="informazioni">Informazioni</string>
+
+
+    <!--Auth_controller-->
+    <string name="login" translatable="false">LOGIN</string>
+    <string name="registrati">REGISTRATI</string>
+    <string name="nome">Nome</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="password_min_6_caratteri">Password (min 6 caratteri)</string>
+    <string name="ripeti_password">Ripeti Password</string>
+    <string name="hai_bisogno_della_password">Hai bisogno della Password?</string>
+    <string name="t1">E\' necessaria l\'e-mail con la quale hai effettuato l\'iscrizione.</string>
+    <string name="resetta_password">RESETTA PASSWORD</string>
+    <string name="errorEmail">Inserisci un indirizzo email valido</string>
+    <string name="errorLogin">Autenticazione fallita Controlla email e password</string>
+    <string name="errorCheck">Email non ancora verificata. Controlla la tua email</string>
+    <string name="password_dimenticata">Password dimenticata?</string>
+    <string name="non_hai_ancora_un_account_registrati">Non hai ancora un account? Registrati</string>
+    <string name="errorName">minimo 3 caratteri</string>
+    <string name="errorPassword">Password non valida</string>
+    <string name="checkEmail">Email di verifica inviata. Controlla la tua email</string>
+    <string name="errorNewUser">Registrazione fallita</string>
+    <string name="resetEmail">Controlla l\'email segui le istruzioni per reimpostare la password!</string>
+    <string name="emailCheck">Email non registrata!</string>
+    <string name="password" translatable="false">Password</string>
+
+
+
+
+    <string name="stato">Stato:</string>
+    <string name="user" translatable="false">Email:</string>
+    <string name="non_connesso">Non connesso</string>
+    <string name="connesso">Connesso</string>
+
+
+    <!-- alert strings -->
+    <string name="title">Nuovo Percorso</string>
+    <string name="message">Inserisci il nome della sessione</string>
+    <string name="btPositive">AGGIUNGI</string>
+    <string name="btCancella">CANCELLA</string>
+    <string name="errorInput">Inserisci un titolo valido</string>
+
+    <string name="tilte2">Attenzione!</string>
+    <string name="message2">Vuoi salvare la sessione prima di abbandonare?</string>
+    <string name="save">SALVA</string>
+    <string name="no" translatable="false">NO</string>
+
+
+    <!--game string-->
+    <string name="domanda">DOMANDA</string>
+    <string name="_1" translatable="false">1</string>
+    <string name="inserisci_la_tua_domanda">Inserisci la tua domanda</string>
+    <string name="inserisci_una_risposta">inserisci una risposta</string>
+    <string name="salva_nsessione">Salva\n Sessione</string>
+    <string name="aggiungi_ndomanda">aggiungi\n domanda</string>
+
+
 </resources>
