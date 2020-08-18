@@ -35,8 +35,8 @@
     <string name="message2">Do you want to save the session before leaving?</string>
     <string name="save">SAVE</string>
     <string name="domanda">QUESTION</string>
-    <string name="inserisci_la_tua_domanda">Please enter your question</string>
-    <string name="inserisci_una_risposta">enter an answer</string>
+    <string name="inserisci_domanda">Please enter your question</string>
+    <string name="inserisci_risposta">Enter an answer</string>
     <string name="salva_nsessione">Save Session</string>
     <string name="aggiungi_ndomanda">add question</string>
 </resources>

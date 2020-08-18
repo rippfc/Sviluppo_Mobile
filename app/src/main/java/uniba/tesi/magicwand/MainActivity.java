@@ -117,7 +117,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setTextUser(TextView txS, TextView txU, ImageView im) {//verifica lo stato dell'utente e la connessione al dispositivo
-        txS.setText(auth.getCurrentUser().getEmail());
+        txS.setText(auth.getCurrentUser().getDisplayName());//mostra il nome con cui ci si è registrato
+        //txU.setText(auth.getCurrentUser().getEmail());  mostra l'email
         im.setImageResource(R.drawable.ic_connection_success);//setta l'immagine di connessione al dispositivo
 
     }
@@ -168,12 +169,9 @@ public class MainActivity extends AppCompatActivity {
                     inputText.setError(getString(R.string.errorInput));
                 }else{
                     setTitle(input);
-
                     Intent intent=new Intent(MainActivity.this, CreateNewSession.class);
                     intent.putExtra("Title",input);
                     startActivity(intent);
-                    //overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                    finish();// TODO: da modificare non ne sono sicuro
                     alertDialog.dismiss();
                 }
             }

@@ -22,7 +22,7 @@ public class PercorsoRegistrato extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         View root = inflater.inflate(R.layout.fragment_percorso_registrato, container, false);
-        final TextView textView = root.findViewById(R.id.text_percorso);
+       // final TextView textView = root.findViewById(R.id.text_percorso);
 
         return root;
     }
