@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class Question implements Serializable {
 
+
+    private String season;
     private int id;
     private String question;
     private String opt_a;
@@ -13,7 +15,8 @@ public class Question implements Serializable {
     private String answer;
 
 
-    public Question(int id,String question, String opt_a, String opt_b, String opt_c, String opt_d, String answer) {
+    public Question(String season, int id,String question, String opt_a, String opt_b, String opt_c, String opt_d, String answer) {
+        this.season = season;
         this.id = id;
         this.question = question;
         this.opt_a = opt_a;
@@ -33,6 +36,15 @@ public class Question implements Serializable {
 
     public String getQuestion() {
         return question;
+    }
+
+
+    public String getSeason() {
+        return season;
+    }
+
+    public void setSeason(String season) {
+        this.season = season;
     }
 
     public void setQuestion(String question) {

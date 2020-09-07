@@ -36,6 +36,8 @@ public class CreateNewSession extends AppCompatActivity {
     private int precedentQuestion = 1;
     private String nameSeason;
 
+    //private Button bt1; set button for read card
+
     String file ="file";
     String selectedOption = "";
 
@@ -71,6 +73,8 @@ public class CreateNewSession extends AppCompatActivity {
         save=(Button)findViewById(R.id.btn_save);
         addQuestion =(Button) findViewById(R.id.bt_new_question);
         nameSeason=getTitle().toString();
+
+      //  bt1=(findViewById(R.id.button1));
 
         auth = FirebaseAuth.getInstance();
         database= FirebaseDatabase.getInstance();
@@ -131,6 +135,7 @@ public class CreateNewSession extends AppCompatActivity {
                 bRadio.setChecked(false);
                 cRadio.setChecked(false);
                 dRadio.setChecked(false);
+             //   bt1.setVisibility(View.VISIBLE);
             }
         });
         bRadio.setOnClickListener(new View.OnClickListener() {
@@ -201,6 +206,7 @@ public class CreateNewSession extends AppCompatActivity {
         cText.setText(null);
         dText.setText(null);
         selectedOption="";
+      //  bt1.setVisibility(View.INVISIBLE);
     }
 
     private boolean checkQuestions() {
@@ -262,6 +268,7 @@ public class CreateNewSession extends AppCompatActivity {
             file =auth.getCurrentUser().getDisplayName();
             if(!TextUtils.isEmpty(file))
                 myRef.child(file).child(nameSeason).setValue(result);
+            //myRef.child("User").child(file).child("Season").child(nameSeason).setValue(result); per specificare i figli
         }
         finish();
     }
