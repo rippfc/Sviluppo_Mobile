@@ -3,7 +3,6 @@ package uniba.tesi.magicwand.Create_Quiz;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -56,34 +55,10 @@ public class CreateNewSession extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_session);
         setTitle(getIntent().getStringExtra("Title"));
-        jsonArray = new JSONArray();
 
-        question=(EditText)findViewById(R.id.questionView);
-        questionNumber=(TextView) findViewById(R.id.txQuestionNumber);
-        aText=(EditText)findViewById(R.id.textViewA);
-        bText=(EditText)findViewById(R.id.textViewB);
-        cText=(EditText)findViewById(R.id.textViewC);
-        dText=(EditText)findViewById(R.id.textViewD);
-
-        aRadio=(RadioButton)findViewById(R.id.radioButtonA);
-        bRadio=(RadioButton)findViewById(R.id.radioButtonB);
-        cRadio=(RadioButton)findViewById(R.id.radioButtonC);
-        dRadio=(RadioButton)findViewById(R.id.radioButtonD);
-
-        save=(Button)findViewById(R.id.btn_save);
-        addQuestion =(Button) findViewById(R.id.bt_new_question);
-        nameSeason=getTitle().toString();
-
-      //  bt1=(findViewById(R.id.button1));
-
-        auth = FirebaseAuth.getInstance();
-        database= FirebaseDatabase.getInstance();
-        myRef=database.getReference();
+        iniNewSeason();
 
         setRadioBt();//set radio batton
-
-        listQuest = new ArrayList<>();
-
 
         addQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -125,6 +100,33 @@ public class CreateNewSession extends AppCompatActivity {
         });
     }
 
+    private void iniNewSeason() {
+        jsonArray = new JSONArray();
+
+        question=(EditText)findViewById(R.id.questionView);
+        questionNumber=(TextView) findViewById(R.id.txQuestionNumber);
+        aText=(EditText)findViewById(R.id.textViewA);
+        bText=(EditText)findViewById(R.id.textViewB);
+        cText=(EditText)findViewById(R.id.textViewC);
+        dText=(EditText)findViewById(R.id.textViewD);
+
+        aRadio=(RadioButton)findViewById(R.id.radioButtonA);
+        bRadio=(RadioButton)findViewById(R.id.radioButtonB);
+        cRadio=(RadioButton)findViewById(R.id.radioButtonC);
+        dRadio=(RadioButton)findViewById(R.id.radioButtonD);
+
+        save=(Button)findViewById(R.id.btn_save);
+        addQuestion =(Button) findViewById(R.id.bt_new_question);
+        nameSeason=getTitle().toString();
+
+        //  bt1=(findViewById(R.id.button1));
+
+        auth = FirebaseAuth.getInstance();
+        database= FirebaseDatabase.getInstance();
+        myRef=database.getReference();
+
+        listQuest = new ArrayList<>();
+    }
 
 
     private void setRadioBt() {
@@ -225,6 +227,7 @@ public class CreateNewSession extends AppCompatActivity {
             Toast.makeText(this, "Seleziona la risposta corretta", Toast.LENGTH_SHORT).show();
         else {
             Question newQuest =new Question();
+            //newQuest.setSeason(nameSeason);
             newQuest.setId(currentQuestion);
             newQuest.setQuestion(question.getText().toString());
             newQuest.setOpt_a(aText.getText().toString());
@@ -237,6 +240,7 @@ public class CreateNewSession extends AppCompatActivity {
 
             JSONObject jsonObject = new JSONObject();
             try {
+              //  jsonObject.put("season",nameSeason);
                 jsonObject.put("question",question.getText().toString());
                 jsonObject.put("opt_a",aText.getText().toString());
                 jsonObject.put("opt_b",bText.getText().toString());
@@ -268,7 +272,7 @@ public class CreateNewSession extends AppCompatActivity {
             file =auth.getCurrentUser().getDisplayName();
             if(!TextUtils.isEmpty(file))
                 myRef.child(file).child(nameSeason).setValue(result);
-            //myRef.child("User").child(file).child("Season").child(nameSeason).setValue(result); per specificare i figli
+            //TODO:myRef.child("User").child(file).child("Season").child(nameSeason).setValue(result); per specificare i figli//eliminalo alla fine
         }
         finish();
     }

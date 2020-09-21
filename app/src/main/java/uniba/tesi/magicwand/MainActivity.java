@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
                 switch (id){
                     case R.id.nav_respass:
                         startActivity(new Intent(MainActivity.this, ResetPassword.class));
-                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         break;
 
                     case R.id.nav_info:
@@ -99,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_logout:
                         auth.signOut();
                         startActivity(new Intent(MainActivity.this, Login.class));
-                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         finish();
                         break;
 
@@ -119,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
     private void setTextUser(TextView txS, TextView txU, ImageView im) {//verifica lo stato dell'utente e la connessione al dispositivo
         txS.setText(auth.getCurrentUser().getDisplayName());//mostra il nome con cui ci si è registrato
         //txU.setText(auth.getCurrentUser().getEmail());  mostra l'email
-        im.setImageResource(R.drawable.ic_connection_success);//setta l'immagine di connessione al dispositivo
+        im.setImageResource(R.drawable.ic_connection_fail);//setta l'immagine di connessione al dispositivo
 
     }
 
