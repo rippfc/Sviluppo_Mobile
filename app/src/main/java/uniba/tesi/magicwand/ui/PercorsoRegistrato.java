@@ -1,5 +1,7 @@
 package uniba.tesi.magicwand.ui;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,12 +70,12 @@ public class PercorsoRegistrato extends Fragment {
 
             @Override
             protected void onBindViewHolder(@NonNull MyViewHolder holder, int position, @NonNull final String model) {
-                holder.setNameSeason(model);
+                holder.setNameSession(model);
                 holder.icon.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(auth.getCurrentUser().getDisplayName());
-                        databaseReference.child(model).removeValue();
+                        showAlertDialogButtonClicked(model);
+
                     }
                 });
                 holder.button.setOnClickListener(new View.OnClickListener() {
@@ -100,5 +102,32 @@ public class PercorsoRegistrato extends Fragment {
         adapter.stopListening();
     }
 
+    private void showAlertDialogButtonClicked(final String key) {
+        // setup the alert builder
+        final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.CustomAlertDialog);
+        builder.setTitle(R.string.tilte2)
+                .setMessage("Sei sicuro di voler eliminare il percorso?")
+                .setIcon(android.R.drawable.ic_dialog_alert);
+
+        builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(auth.getCurrentUser().getDisplayName());
+                databaseReference.child(key).removeValue();
+            }
+        })
+
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+        final AlertDialog alertDialog = builder.create();
+        alertDialog.setCancelable(false);
+        alertDialog.show();
+
+    }
 
 }

@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showAlertDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogTheme);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.CustomAlertDialog);
         builder.setTitle(R.string.title);
         builder.setMessage(R.string.message);
         final EditText inputText = new EditText(this);
@@ -146,6 +146,16 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.btPositive, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        String input=inputText.getText().toString().trim();
+                        if(input.isEmpty()){
+                            inputText.setError(getString(R.string.errorInput));
+                        }else{
+                            setTitle(input);
+                            Intent intent=new Intent(MainActivity.this, CreateNewSession.class);
+                            intent.putExtra("Title",input);
+                            startActivity(intent);
+                            dialog.dismiss();
+                        }
                     }
                 })
                 .setNegativeButton(R.string.btCancella, new DialogInterface.OnClickListener() {
@@ -158,23 +168,6 @@ public class MainActivity extends AppCompatActivity {
         final AlertDialog alertDialog = builder.create();
         alertDialog.setCancelable(false);
         alertDialog.show();
-
-        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String input=inputText.getText().toString().trim();
-                if(input.isEmpty()){
-                    inputText.setError(getString(R.string.errorInput));
-                }else{
-                    setTitle(input);
-                    Intent intent=new Intent(MainActivity.this, CreateNewSession.class);
-                    intent.putExtra("Title",input);
-                    startActivity(intent);
-                    alertDialog.dismiss();
-                }
-            }
-        });
-
     }
 
 

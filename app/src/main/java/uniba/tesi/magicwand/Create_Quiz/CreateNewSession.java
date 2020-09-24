@@ -33,7 +33,7 @@ public class CreateNewSession extends AppCompatActivity {
     private Button save, addQuestion;
     private int currentQuestion = 1;
     private int precedentQuestion = 1;
-    private String nameSeason;
+    private String nameSession;
 
     //private Button bt1; set button for read card
 
@@ -56,7 +56,7 @@ public class CreateNewSession extends AppCompatActivity {
         setContentView(R.layout.activity_create_new_session);
         setTitle(getIntent().getStringExtra("Title"));
 
-        iniNewSeason();
+        iniNewSession();
 
         setRadioBt();//set radio batton
 
@@ -100,7 +100,7 @@ public class CreateNewSession extends AppCompatActivity {
         });
     }
 
-    private void iniNewSeason() {
+    private void iniNewSession() {
         jsonArray = new JSONArray();
 
         question=(EditText)findViewById(R.id.questionView);
@@ -117,7 +117,7 @@ public class CreateNewSession extends AppCompatActivity {
 
         save=(Button)findViewById(R.id.btn_save);
         addQuestion =(Button) findViewById(R.id.bt_new_question);
-        nameSeason=getTitle().toString();
+        nameSession =getTitle().toString();
 
         //  bt1=(findViewById(R.id.button1));
 
@@ -271,7 +271,7 @@ public class CreateNewSession extends AppCompatActivity {
             Map<String,Object> result= new Gson().fromJson(jsonStr,Map.class);
             file =auth.getCurrentUser().getDisplayName();
             if(!TextUtils.isEmpty(file))
-                myRef.child(file).child(nameSeason).setValue(result);
+                myRef.child(file).child(nameSession).setValue(result);
             //TODO:myRef.child("User").child(file).child("Season").child(nameSeason).setValue(result); per specificare i figli//eliminalo alla fine
         }
         finish();
@@ -294,7 +294,7 @@ public class CreateNewSession extends AppCompatActivity {
 
     private void showAlertDialogButtonClicked() {
         // setup the alert builder
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this, R.style.AlertDialogTheme);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.CustomAlertDialog);
         builder.setTitle(R.string.tilte2)
                 .setMessage(R.string.message2)
                 .setIcon(android.R.drawable.ic_dialog_alert);
@@ -302,11 +302,17 @@ public class CreateNewSession extends AppCompatActivity {
         builder.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        //Todo: salva sessione
+                        checkQuestions();
+                        saveQuestion();
+                        dialog.dismiss();
                     }
                 })
                 .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        dialog.dismiss();
                     }
                 })
                 .setNeutralButton(R.string.btCancella, new DialogInterface.OnClickListener() {
@@ -316,27 +322,9 @@ public class CreateNewSession extends AppCompatActivity {
                     }
                 });
 
-        final android.app.AlertDialog alertDialog = builder.create();
+        final AlertDialog alertDialog = builder.create();
         alertDialog.setCancelable(false);
         alertDialog.show();
-
-        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-                    alertDialog.dismiss();
-                }
-        });
-
-        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Todo: salva sessione
-                checkQuestions();
-                saveQuestion();
-                alertDialog.dismiss();
-            }
-        });
     }
 
 

@@ -28,13 +28,9 @@
                 android:id="@+id/textview3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="cursive"
-                android:gravity="center"
                 android:padding="25dp"
                 android:text="@string/registrati"
-                android:textColor="@color/primaryTextColor"
-                android:textSize="30sp"
-                android:textStyle="bold"/>
+                style="@style/textTitle"/>
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -115,13 +111,10 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_margin="10dp"
-                    android:background="@drawable/circular_button"
-                    android:elevation="4dp"
+                    style="@style/buttonstyle"
                     android:fontFamily="sans-serif-condensed-medium"
                     android:text="@string/registrati"
-                    android:textColor="@color/whiteTextColor"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    />
 
 
 

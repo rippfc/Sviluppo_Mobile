@@ -32,9 +32,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="@string/domanda"
-                    android:textColor="@color/primaryTextColor"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    style="@style/textTitle" />
 
                 <TextView
                     android:id="@+id/txQuestionNumber"
@@ -42,9 +40,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:text="@string/_1"
-                    android:textColor="@color/primaryTextColor"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    style="@style/textTitle" />
 
             </LinearLayout>
 
@@ -190,14 +186,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentLeft="true"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/circular_button"
-                    android:elevation="4dp"
+                    style="@style/buttonstyle"
                     android:fontFamily="sans-serif-condensed-medium"
                     android:text="@string/salva_nsessione"
-                    android:textColor="@color/whiteTextColor"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
                     android:visibility="invisible" />
 
                 <Button
@@ -205,14 +196,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_margin="10dp"
-                    android:background="@drawable/circular_button"
-                    android:elevation="4dp"
+                    style="@style/buttonstyle"
                     android:fontFamily="sans-serif-condensed-medium"
-                    android:text="@string/aggiungi_ndomanda"
-                    android:textColor="@color/whiteTextColor"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:text="@string/aggiungi_ndomanda"/>
+                <!-- Todo:negli style aggiungi il font dei bottoni-->
             </RelativeLayout>
 
 

@@ -25,7 +25,7 @@
     <string name="ripeti_password">Ripeti Password</string>
     <string name="hai_bisogno_della_password">Hai bisogno della Password?</string>
     <string name="t1">E\' necessaria l\'e-mail con la quale hai effettuato l\'iscrizione.</string>
-    <string name="resetta_password">RESETTA\nPASSWORD</string>
+    <string name="resetta_password">RESETTA PASSWORD</string>
     <string name="errorEmail">Inserisci un indirizzo email valido</string>
     <string name="errorLogin">Autenticazione fallita Controlla email e password</string>
     <string name="errorCheck">Email non ancora verificata. Controlla la tua email</string>
@@ -66,8 +66,8 @@
     <string name="_1" translatable="false">1</string>
     <string name="inserisci_domanda">Inserisci la tua domanda</string>
     <string name="inserisci_risposta">Inserisci una risposta</string>
-    <string name="salva_nsessione">Salva\n Sessione</string>
-    <string name="aggiungi_ndomanda">aggiungi\ndomanda</string>
+    <string name="salva_nsessione">Salva Sessione</string>
+    <string name="aggiungi_ndomanda">aggiungi domanda</string>
 
 
 </resources>
