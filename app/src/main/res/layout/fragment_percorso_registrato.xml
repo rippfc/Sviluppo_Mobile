@@ -6,9 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".ui.PercorsoRegistrato">
 
-
-    <include
-        layout="@layout/list_item"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        />
+
+    <TextView
+        android:id="@+id/ptext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NESSUN PERSOCRSO PRESENTE"
+        android:textStyle="bold"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+       />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </androidx.recyclerview.widget.RecyclerView>
 </RelativeLayout>

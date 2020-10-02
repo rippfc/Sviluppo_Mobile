@@ -7,13 +7,13 @@
 
     <!--colors for login and register-->
     <color name="whiteTextColor">#FFFFFF</color>
-    <color name="primaryTextColor">#00a5ff</color>
-    <color name="loginBkColor">#f0f0f0</color>
+    <color name="textColor">#00a5ff</color>
+    <color name="item">#f0f0f0</color>
 
     <!--colros for card-->
     <color name="CardColor">#1976d2</color>
-    <color name="dialogButtonText">#000000</color>
     <color name="ic_launcher_background">#FFFFFF</color>
     <color name="color_item">#8673A89E</color>
+
 
 </resources>

@@ -27,8 +27,7 @@
             android:text="version 1.1"
             android:gravity="center"
             android:textSize="20sp"
-            android:textColor="#fff"
-            android:textStyle="bold"/>
+            android:textColor="#fff"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -37,8 +36,7 @@
             android:text="svilippata da Antonio Ricchetti"
             android:gravity="center"
             android:textSize="20sp"
-            android:textColor="#fff"
-            android:textStyle="bold"/>
+            android:textColor="#fff" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -30,7 +30,7 @@
     <string name="errorLogin">Autenticazione fallita Controlla email e password</string>
     <string name="errorCheck">Email non ancora verificata. Controlla la tua email</string>
     <string name="password_dimenticata">Password dimenticata?</string>
-    <string name="non_hai_ancora_un_account_registrati">Non hai ancora un account? Registrati</string>
+    <string name="non_hai_ancora_un_account_registrati">Non hai ancora un account?\nRegistrati</string>
     <string name="errorName">minimo 3 caratteri</string>
     <string name="errorPassword">Password non valida</string>
     <string name="checkEmail">Email di verifica inviata. Controlla la tua email</string>
@@ -38,8 +38,6 @@
     <string name="resetEmail">Controlla l\'email segui le istruzioni per reimpostare la password!</string>
     <string name="emailCheck">Email non registrata!</string>
     <string name="password" translatable="false">Password</string>
-
-
 
 
     <string name="stato">Stato:</string>

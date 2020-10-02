@@ -1,85 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/CardColor"
     tools:context=".Aut_Controller.Register">
-    <!--TODO:devo aggiungere un immagine-->
 
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
-
+        android:layout_centerVertical="true">
 
         <LinearLayout
+            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/circular_card"
-            android:orientation="vertical"
-            android:elevation="1dp">
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_marginBottom="30dp"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:src="@drawable/ic_museum" />
 
             <TextView
                 android:id="@+id/textview3"
-                android:layout_width="match_parent"
+                style="@style/textTitle"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="25dp"
-                android:text="@string/registrati"
-                style="@style/textTitle"/>
+                android:text="@string/registrati" />
 
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp">
+                    android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txNome"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed-medium"
                         android:hint="@string/nome"
                         android:inputType="textPersonName"
                         android:maxLines="1"
                         android:singleLine="true" />
-
                 </com.google.android.material.textfield.TextInputLayout>
 
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp">
+                    android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed-medium"
                         android:hint="@string/email"
                         android:inputType="textEmailAddress"
                         android:maxLines="1"
                         android:singleLine="true"/>
-
                 </com.google.android.material.textfield.TextInputLayout>
 
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
                     app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed-medium"
                         android:hint="@string/password_min_6_caratteri"
                         android:inputType="textPassword"
                         android:maxLines="1"
@@ -90,33 +86,24 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
+                    android:layout_marginBottom="30dp"
                     app:passwordToggleEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/txRipetiPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-condensed-medium"
                         android:hint="@string/ripeti_password"
                         android:inputType="textPassword"
                         android:maxLines="1"
                         android:singleLine="true"/>
-
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
                     android:id="@+id/btn_regiter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/button.ui"
                     android:layout_gravity="center"
-                    android:layout_margin="10dp"
-                    style="@style/buttonstyle"
-                    android:fontFamily="sans-serif-condensed-medium"
-                    android:text="@string/registrati"
-                    />
-
-
+                    android:text="@string/registrati"/>
 
         </LinearLayout>
 

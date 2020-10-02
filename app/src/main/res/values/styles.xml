@@ -22,10 +22,11 @@
     <!--diaolg custom-->
     <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowBackground">@drawable/background_dialog</item>
-        <item name="elevation">24dp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="elevation">@dimen/dialog_elevation</item>
     </style>
 
-<!--anim-->
+    <!--anim-->
     <style name="CustomActivityAnimation"
         parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
@@ -34,23 +35,42 @@
         <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
 
-    <style name="buttonstyle">
+    <style name="textTitle">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+   <!-- EREDITARIETA' TRA STILI-->
+    <!--stile button-->
+    <style name="button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="elevation">4dp</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+
+    <style name="button.ui">
         <item name="android:textColor">@color/whiteTextColor</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:padding">10dp</item>
         <item name="android:background"> @drawable/circular_button</item>
-        <item name="elevation">4dp</item>
-        <item name="android:layout_margin">10dp</item>
     </style>
 
-    <style name="textTitle">
-        <item name="android:textSize">30sp</item>
-        <item name="android:textColor">@color/colorPrimaryDark</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:textStyle">bold</item>
-        <item name="fontFamily">cursive</item>
-        <item name="android:gravity">center</item>
+    <style name="button.play">
+        <item name="android:padding">40dp</item>
+        <item name="android:background">@drawable/circular_button_play</item>
+        <item name="android:layout_weight">1</item>
     </style>
+
+  <!-- style cadview-->
+    <style name="card">
+        <item name="cardCornerRadius">@dimen/radius</item>
+        <item name="elevation">@dimen/card_elevation</item>
+    </style>
+
+
 
 </resources>

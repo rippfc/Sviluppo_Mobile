@@ -52,9 +52,9 @@ public class Register extends AppCompatActivity {
                 }else if(email.isEmpty()||!(email.contains("@"))){
                     inputEmail.setError(getString(R.string.errorEmail));
                 }else if(password.isEmpty()||password.length()<6){
-                    inputPassword.setError(getString(R.string.errorPassword));
+                    Toast.makeText(Register.this, R.string.errorPassword, Toast.LENGTH_SHORT).show();
                 }else if (!ripetiPass.equals(password)){
-                    repeatPassword.setError(getString(R.string.errorPassword));
+                    Toast.makeText(Register.this, R.string.errorPassword, Toast.LENGTH_SHORT).show();
                 }else{
                     createFirebaseUser(email,password,nome);
                 }

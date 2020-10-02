@@ -80,9 +80,10 @@ public class Login extends AppCompatActivity {
                     inputEmail.setError(getString(R.string.errorEmail));
                    return;
                 }else if(password.isEmpty()||password.length()<6){
-                    inputPassword.setError(getString(R.string.errorPassword));
+                    Toast.makeText(Login.this, R.string.errorPassword, Toast.LENGTH_SHORT).show();
                     return;
                 }else{
+                    loginProgressBar.setVisibility(View.VISIBLE);
                     loginUser(email,password);
                 }
 
@@ -95,10 +96,9 @@ public class Login extends AppCompatActivity {
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        loginProgressBar.setVisibility(View.VISIBLE);
                         if (!task.isSuccessful()) {
                             Toast.makeText(Login.this, R.string.errorLogin,Toast.LENGTH_SHORT).show();
-                            loginProgressBar.setVisibility(View.INVISIBLE);
+                            loginProgressBar.setVisibility(View.GONE);
 
                         } else {
                             if(mAuth.getCurrentUser().isEmailVerified()){
@@ -108,7 +108,7 @@ public class Login extends AppCompatActivity {
                             }else {
                                 Toast.makeText(Login.this, R.string.errorCheck,Toast.LENGTH_SHORT).show();
                                 FirebaseAuth.getInstance().signOut();
-                                loginProgressBar.setVisibility(View.INVISIBLE);
+                                loginProgressBar.setVisibility(View.GONE);
                             }
                         }
                     }

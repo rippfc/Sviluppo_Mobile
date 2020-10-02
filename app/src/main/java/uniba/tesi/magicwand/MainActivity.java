@@ -3,6 +3,8 @@ package uniba.tesi.magicwand;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.MenuItem;
@@ -11,10 +13,8 @@ import android.view.Menu;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -29,8 +29,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import uniba.tesi.magicwand.Aut_Controller.Login;
-import uniba.tesi.magicwand.Aut_Controller.ResetPassword;
 import uniba.tesi.magicwand.Create_Quiz.CreateNewSession;
+import uniba.tesi.magicwand.Utils.DialogResetPassword;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -88,7 +88,9 @@ public class MainActivity extends AppCompatActivity {
                 //it's possible to do more actions on several items, if there is a large amount of items I prefer switch(){case} instead of if()
                 switch (id){
                     case R.id.nav_respass:
-                        startActivity(new Intent(MainActivity.this, ResetPassword.class));
+                        DialogResetPassword alertResetPassword=new DialogResetPassword(MainActivity.this);
+                        alertResetPassword.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                        alertResetPassword.show();
                         break;
 
                     case R.id.nav_info:
@@ -98,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_logout:
                         auth.signOut();
                         startActivity(new Intent(MainActivity.this, Login.class));
+                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                         finish();
                         break;
 
@@ -136,26 +139,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showAlertDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.CustomAlertDialog);
-        builder.setTitle(R.string.title);
-        builder.setMessage(R.string.message);
         final EditText inputText = new EditText(this);
         inputText.setInputType(InputType.TYPE_CLASS_TEXT);
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this,R.style.CustomAlertDialog);
+        builder.setTitle(R.string.title)
+            .setMessage(R.string.message)
+            .setIcon(R.drawable.ic_menu_percorso);
 
-        builder.setView(inputText)
-                .setPositiveButton(R.string.btPositive, new DialogInterface.OnClickListener() {
+
+        builder.setPositiveButton(R.string.btPositive, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        String input=inputText.getText().toString().trim();
-                        if(input.isEmpty()){
-                            inputText.setError(getString(R.string.errorInput));
-                        }else{
-                            setTitle(input);
-                            Intent intent=new Intent(MainActivity.this, CreateNewSession.class);
-                            intent.putExtra("Title",input);
-                            startActivity(intent);
-                            dialog.dismiss();
-                        }
                     }
                 })
                 .setNegativeButton(R.string.btCancella, new DialogInterface.OnClickListener() {
@@ -163,11 +157,29 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
-                });
+                })
+                .setView(inputText);
 
         final AlertDialog alertDialog = builder.create();
         alertDialog.setCancelable(false);
         alertDialog.show();
+
+        alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String input=inputText.getText().toString().trim();
+                if(input.isEmpty()){
+                    inputText.setError(getString(R.string.errorInput));
+                }else{
+                    setTitle(input);
+                    Intent intent=new Intent(MainActivity.this, CreateNewSession.class);
+                    intent.putExtra("Title",input);
+                    startActivity(intent);
+                    alertDialog.dismiss();
+                }
+            }
+        });
+
     }
 
 
