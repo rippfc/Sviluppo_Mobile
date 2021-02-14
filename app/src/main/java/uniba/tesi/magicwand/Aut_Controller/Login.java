@@ -1,4 +1,3 @@
-
 package uniba.tesi.magicwand.Aut_Controller;
 
 import androidx.annotation.NonNull;
@@ -23,9 +22,15 @@ import uniba.tesi.magicwand.MainActivity;
 import uniba.tesi.magicwand.R;
 
 public class Login extends AppCompatActivity {
+    /**
+     * Debug tag
+     */
+    public static final String TAG = Login.class.getName();
 
-    private TextView txToRegister,txRememberPass;
-    private EditText inputEmail,inputPassword;
+    private TextView txToRegister;
+    private TextView txRememberPass;
+    private EditText inputEmail;
+    private EditText inputPassword;
     private Button btnLogin;
 
     private ProgressBar loginProgressBar;

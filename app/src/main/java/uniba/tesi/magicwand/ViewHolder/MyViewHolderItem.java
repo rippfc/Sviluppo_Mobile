@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import uniba.tesi.magicwand.R;
 
-public class MyViewHolder extends RecyclerView.ViewHolder {
+public class MyViewHolderItem extends RecyclerView.ViewHolder {
     public LinearLayout root;
     public TextView nameSession;
     public Button button;
     public ImageView icon;
 
-    public MyViewHolder(View itemView) {
+    public MyViewHolderItem(View itemView) {
         super(itemView);
         root = itemView.findViewById(R.id.list_root);
         nameSession = (TextView) itemView.findViewById(R.id.percorso);

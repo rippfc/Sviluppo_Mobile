@@ -50,8 +50,9 @@
     <string name="title">Nuovo Percorso</string>
     <string name="message">Inserisci il nome della sessione</string>
     <string name="btPositive">AGGIUNGI</string>
-    <string name="btCancella">CANCELLA</string>
+    <string name="btAnnulla">CANCELLA</string>
     <string name="errorInput">Inserisci un titolo valido</string>
+    <string name="errorInputNumber" translatable="false">Inserisci numero valido</string>
 
     <string name="tilte2">Attenzione!</string>
     <string name="message2">Vuoi salvare la sessione prima di abbandonare?</string>
@@ -66,6 +67,8 @@
     <string name="inserisci_risposta">Inserisci una risposta</string>
     <string name="salva_nsessione">Salva Sessione</string>
     <string name="aggiungi_ndomanda">aggiungi domanda</string>
+
+    <string name="yes" translatable="false">YES</string>
 
 
 </resources>

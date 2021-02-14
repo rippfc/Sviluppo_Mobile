@@ -26,11 +26,23 @@ import uniba.tesi.magicwand.Model.Question;
 import uniba.tesi.magicwand.R;
 
 public class CreateNewSession extends AppCompatActivity {
+    /**
+     * Debug tag
+     */
+    public static final String TAG = CreateNewSession.class.getName();
 
-    private EditText question, aText,bText,cText,dText;
-    private RadioButton aRadio,bRadio,cRadio,dRadio;
+    private EditText question;
+    private EditText aText;
+    private EditText bText;
+    private EditText cText;
+    private EditText dText;
+    private RadioButton aRadio;
+    private RadioButton bRadio;
+    private RadioButton cRadio;
+    private RadioButton dRadio;
     private TextView questionNumber;
-    private Button save, addQuestion;
+    private Button save;
+    private Button addQuestion;
     private int currentQuestion = 1;
     private int precedentQuestion = 1;
     private String nameSession;
@@ -171,6 +183,7 @@ public class CreateNewSession extends AppCompatActivity {
 
 
     private void setAllQuest(int position) {
+        clearAllQuestion();
         Question question1= new Question();
         question1 = listQuest.get(position-1);
         questionNumber.setText(String.valueOf(question1.getId()));
@@ -242,6 +255,7 @@ public class CreateNewSession extends AppCompatActivity {
             try {
               //  jsonObject.put("season",nameSeason);
                 jsonObject.put("question",question.getText().toString());
+                jsonObject.put("id",currentQuestion);// todo:controlla bene mod fatta da poco
                 jsonObject.put("opt_a",aText.getText().toString());
                 jsonObject.put("opt_b",bText.getText().toString());
                 jsonObject.put("opt_c",cText.getText().toString());
@@ -315,7 +329,7 @@ public class CreateNewSession extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 })
-                .setNeutralButton(R.string.btCancella, new DialogInterface.OnClickListener() {
+                .setNeutralButton(R.string.btAnnulla, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();

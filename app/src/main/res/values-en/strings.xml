@@ -29,7 +29,7 @@
     <string name="title">New Path</string>
     <string name="message">Enter the session name</string>
     <string name="btPositive">ADD</string>
-    <string name="btCancella">CANCEL</string>
+    <string name="btAnnulla">CANCEL</string>
     <string name="errorInput">Please enter a valid title</string>
     <string name="tilte2">Attention!</string>
     <string name="message2">Do you want to save the session before leaving?</string>

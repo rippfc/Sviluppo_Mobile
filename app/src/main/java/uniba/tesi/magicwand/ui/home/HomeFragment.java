@@ -12,9 +12,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import uniba.tesi.magicwand.Aut_Controller.Login;
 import uniba.tesi.magicwand.R;
 
 public class HomeFragment extends Fragment {
+    /**
+     * Debug tag
+     */
+    public static final String TAG = HomeFragment.class.getName();
 
     private HomeViewModel homeViewModel;
 

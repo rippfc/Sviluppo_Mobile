@@ -41,7 +41,7 @@
             style="@style/button"
             android:layout_margin="10dp"
             android:background="@drawable/circular_card"
-            android:text="Avvia" />
+            android:text="Apri" />
 
     </LinearLayout>
 

@@ -7,12 +7,14 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -31,21 +33,37 @@ import androidx.appcompat.widget.Toolbar;
 import uniba.tesi.magicwand.Aut_Controller.Login;
 import uniba.tesi.magicwand.Create_Quiz.CreateNewSession;
 import uniba.tesi.magicwand.Utils.DialogResetPassword;
+import uniba.tesi.magicwand.Utils.Play;
 
 public class MainActivity extends AppCompatActivity {
+    /**
+     * Debug tag
+     */
+    public static final String TAG = MainActivity.class.getName();
 
     private AppBarConfiguration mAppBarConfiguration;
     private FirebaseAuth auth;
     private TextView user,status;
     private ImageView image;
+    FloatingActionButton fab;
+    NavigationView navigationView;
+    View header;
+    DrawerLayout drawer;
+    NavController navController;
+
+   // public static String CURRENT_TAG = TAG;
+    public static String CURRENT_SESSION;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.d(TAG, "onCreate()");
+
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final FloatingActionButton fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         auth= FirebaseAuth.getInstance();
 
 
@@ -57,14 +75,28 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {//azione pulsante
-                showAlertDialog();
+                switch (navController.getCurrentDestination().getId()){
+                    case R.id.fragmentShowSession:
+                        Intent intent= new Intent(MainActivity.this, Play.class);
+                        intent.putExtra("Session",CURRENT_SESSION);
+                        intent.putExtra("User",auth.getCurrentUser().getDisplayName());
+                        startActivity(intent);
+                        Toast.makeText(MainActivity.this, auth.getCurrentUser().getDisplayName()+" "+CURRENT_SESSION, Toast.LENGTH_SHORT).show();
+                        break;
+                    default:
+                        //Toast.makeText(MainActivity.this, CURRENT_TAG, Toast.LENGTH_SHORT).show();
+                        showAlertDialog();
+                        //break;
+                }
+
+
             }
         });
 
-        final DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        drawer = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
 
-        View header = navigationView.getHeaderView(0);//per settare stato connessine e image
+        header = navigationView.getHeaderView(0);//per settare stato connessine e image
         status=header.findViewById(R.id.txStatus);
         user=header.findViewById(R.id.txUser);
         image=header.findViewById(R.id.imageStatus);
@@ -77,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_home, R.id.nav_percorso_registrato, R.id.nav_sessioni_completate,R.id.nav_info)
                 .setDrawerLayout(drawer)
                 .build();
-        final NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
@@ -110,15 +142,19 @@ public class MainActivity extends AppCompatActivity {
                 //This is for maintaining the behavior of the Navigation view
                 NavigationUI.onNavDestinationSelected(item,navController);
                 //This is for closing the drawer after acting on it
-                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
                 return true;
             }
         });
     }
 
+    public FloatingActionButton getFloatingActionButton(){
+        return fab;
+    }
+
     private void setTextUser(TextView txS, TextView txU, ImageView im) {//verifica lo stato dell'utente e la connessione al dispositivo
-        txS.setText(auth.getCurrentUser().getDisplayName());//mostra il nome con cui ci si è registrato
+        txS.setText(auth.getCurrentUser().getDisplayName().toUpperCase());//mostra il nome con cui ci si è registrato
         //txU.setText(auth.getCurrentUser().getEmail());  mostra l'email
         im.setImageResource(R.drawable.ic_connection_fail);//setta l'immagine di connessione al dispositivo
 
@@ -133,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
@@ -152,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                     }
                 })
-                .setNegativeButton(R.string.btCancella, new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.btAnnulla, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();

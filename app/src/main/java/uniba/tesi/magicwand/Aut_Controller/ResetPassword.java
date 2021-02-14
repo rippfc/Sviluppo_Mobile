@@ -17,6 +17,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import uniba.tesi.magicwand.R;
 
 public class ResetPassword extends AppCompatActivity {
+    /**
+     * Debug tag
+     */
+    public static final String TAG = ResetPassword.class.getName();
 
     private Button btnResetPassword;
     private EditText inputEmail;

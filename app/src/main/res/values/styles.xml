@@ -47,7 +47,7 @@
     <style name="button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="elevation">4dp</item>
+        <item name="elevation">@dimen/button_elevation</item>
         <item name="android:layout_margin">10dp</item>
     </style>
 
@@ -59,10 +59,13 @@
         <item name="android:background"> @drawable/circular_button</item>
     </style>
 
-    <style name="button.play">
+    <style name="play">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:padding">40dp</item>
         <item name="android:background">@drawable/circular_button_play</item>
         <item name="android:layout_weight">1</item>
+        <item name="android:layout_margin">5dp</item>
     </style>
 
   <!-- style cadview-->

@@ -15,7 +15,12 @@
         android:id="@+id/nav_percorso_registrato"
         android:name="uniba.tesi.magicwand.ui.PercorsoRegistrato"
         android:label="@string/percorso_registrato"
-        tools:layout="@layout/fragment_percorso_registrato" />
+        tools:layout="@layout/fragment_percorso_registrato" >
+    <!--    //todo: mod1-->
+        <action
+            android:id="@+id/action_nav_percorso_registrato_to_fragmentShowSession"
+            app:destination="@id/fragmentShowSession" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_sessioni_completate"
@@ -28,6 +33,13 @@
         android:name="uniba.tesi.magicwand.ui.Info"
         android:label="@string/informazioni"
         tools:layout="@layout/fragment_info" />
+
+  <!--  //todo: mod1-->
+    <fragment
+        android:id="@+id/fragmentShowSession"
+        android:name="uniba.tesi.magicwand.Utils.FragmentShowSession"
+        android:label="fragment_show_session"
+        tools:layout="@layout/fragment_show_session" />
 
 
 </navigation>

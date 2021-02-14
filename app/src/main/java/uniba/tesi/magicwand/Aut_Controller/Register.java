@@ -21,8 +21,15 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import uniba.tesi.magicwand.R;
 
 public class Register extends AppCompatActivity {
+    /**
+     * Debug tag
+     */
+    public static final String TAG = Register.class.getName();
 
-    private EditText inputEmail,inputPassword,inputName,repeatPassword;
+    private EditText inputEmail;
+    private EditText inputPassword;
+    private EditText inputName;
+    private EditText repeatPassword;
     private Button btRegister;
 
     private FirebaseAuth mAuth;

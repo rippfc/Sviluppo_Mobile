@@ -18,7 +18,10 @@ import uniba.tesi.magicwand.ui.home.HomeViewModel;
 
 
 public class SessioniCompletate extends Fragment {
-
+    /**
+     * Debug tag
+     */
+    public static final String TAG = SessioniCompletate.class.getName();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

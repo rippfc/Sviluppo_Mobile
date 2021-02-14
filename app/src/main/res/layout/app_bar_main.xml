@@ -30,6 +30,6 @@
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
         app:srcCompat="@drawable/ic_add_24"
-        android:elevation="6dp"/>
+        android:elevation="@dimen/fab_elevation"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

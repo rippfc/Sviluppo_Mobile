@@ -9,8 +9,7 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -21,9 +20,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp">
+                android:layout_marginRight="10dp"
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -32,23 +31,28 @@
                     app:srcCompat="@drawable/ic_user_24" />
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/id_player"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="giocatore1"
-                    android:layout_weight="1"
+                    android:layout_gravity="center"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="80dp"
-                    android:layout_gravity="center"
-                    />
+                    android:layout_weight="1"
+                    android:text="giocatore1" />
 
-                <TextView
-                    android:id="@+id/text_view_countdown"
+                <Chronometer
+                    android:id="@+id/text_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="00:30"
-                    android:textColor="@android:color/black"
                     android:textSize="40sp" />
+
+                <!-- <TextView
+                     android:id="@+id/text_time"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="00:30"
+                     android:textColor="@android:color/black"
+                     android:textSize="40sp" />-->
             </LinearLayout>
 
             <androidx.cardview.widget.CardView
@@ -71,55 +75,70 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_alignParentLeft="true"
-                            android:orientation="vertical"
-                            android:layout_centerVertical="true">
+                            android:layout_centerVertical="true"
+                            android:orientation="vertical">
+
                             <TextView
-                                android:id="@+id/textView"
+                                android:id="@+id/quest_num"
+                                style="@style/textTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                style="@style/textTitle"
-                                android:text="2/3"
-                                android:layout_gravity="center"/>
+                                android:layout_gravity="center"
+                                android:text="2/3" />
+
                             <TextView
-                                android:id="@+id/textView2"
+                                style="@style/textTitle"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                style="@style/textTitle"
-                                android:textSize="10dp"
-                                android:text="@string/domanda" />
+                                android:text="@string/domanda"
+                                android:textSize="10dp" />
                         </LinearLayout>
 
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"
                             android:layout_alignParentRight="true"
                             android:layout_centerVertical="true"
-                            >
-                            <ImageView
-                                android:id="@+id/imageView3"
-                                android:layout_width="40dp"
-                                android:layout_height="40dp"
-                                android:layout_marginRight="10dp"
-                                app:srcCompat="@drawable/ic_round_star_24" />
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_marginRight="10dp"
+                                    app:srcCompat="@drawable/ic_round_star_24" />
+
+                                <TextView
+                                    android:id="@+id/points"
+                                    style="@style/textTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0" />
+                            </LinearLayout>
 
                             <TextView
-                                android:id="@+id/points"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
                                 style="@style/textTitle"
-                                android:text="2/15" />
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Punteggio"
+                                android:textSize="10dp" />
+
                         </LinearLayout>
                     </RelativeLayout>
 
                     <TextView
-                        android:id="@+id/question"
+                        android:id="@+id/domanda"
                         style="@style/textTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="20sp"
                         android:gravity="center"
+                        android:padding="20sp"
                         android:text="@string/domanda" />
                 </LinearLayout>
 
@@ -131,14 +150,12 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/button10"
-                    style="@style/button.play"
-                    android:text="Button" />
+                    android:id="@+id/buttonA"
+                    style="@style/play" />
 
                 <Button
-                    android:id="@+id/button11"
-                    style="@style/button.play"
-                    android:text="Button" />
+                    android:id="@+id/buttonB"
+                    style="@style/play" />
             </LinearLayout>
 
             <LinearLayout
@@ -147,16 +164,15 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/button12"
-                    style="@style/button.play"
-                    android:text="Button" />
+                    android:id="@+id/buttonC"
+                    style="@style/play" />
 
                 <Button
-                    android:id="@+id/button13"
-                    style="@style/button.play"
-                    android:text="Button" />
+                    android:id="@+id/buttonD"
+                    style="@style/play" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
 
 </RelativeLayout>
