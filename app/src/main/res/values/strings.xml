@@ -1,74 +1,84 @@
 <resources>
-    <string name="app_name">Magic Wand</string>
+    <string name="app_name" translatable="false">Magic Wand</string>
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="nav_header_title" translatable="false">Android Studio</string>
     <string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
     <string name="nav_header_desc" translatable="false">Navigation header</string>
-    <string name="action_settings" translatable="false">Settings</string>
+    <string name="change_language">Change Language</string>
 
     <!-- Drawer strings -->
     <string name="menu_home" translatable="false">Home</string>
-    <string name="percorso_registrato">Percorso Registrato</string>
-    <string name="sessioni_completate">Sessioni Completate</string>
-    <string name="cambia_password">Cambia Password</string>
+    <string name="percorso_registrato">Registered Path</string>
+    <string name="sessioni_completate">Sessions Completed</string>
+    <string name="cambia_password">Change Password</string>
     <string name="logout" translatable="false">Logout</string>
-    <string name="informazioni">Informazioni</string>
+    <string name="informazioni">Information</string>
 
 
     <!--Auth_controller-->
     <string name="login" translatable="false">LOGIN</string>
-    <string name="registrati">REGISTRATI</string>
-    <string name="nome">Nome</string>
+    <string name="registrati">SIGN IN</string>
+    <string name="nome">Name</string>
     <string name="email" translatable="false">Email</string>
     <string name="password_min_6_caratteri">Password (min 6 caratteri)</string>
-    <string name="ripeti_password">Ripeti Password</string>
-    <string name="hai_bisogno_della_password">Hai bisogno della Password?</string>
-    <string name="t1">E\' necessaria l\'e-mail con la quale hai effettuato l\'iscrizione.</string>
-    <string name="resetta_password">RESETTA PASSWORD</string>
-    <string name="errorEmail">Inserisci un indirizzo email valido</string>
-    <string name="errorLogin">Autenticazione fallita Controlla email e password</string>
-    <string name="errorCheck">Email non ancora verificata. Controlla la tua email</string>
-    <string name="password_dimenticata">Password dimenticata?</string>
-    <string name="non_hai_ancora_un_account_registrati">Non hai ancora un account?\nRegistrati</string>
-    <string name="errorName">minimo 3 caratteri</string>
-    <string name="errorPassword">Password non valida</string>
-    <string name="checkEmail">Email di verifica inviata. Controlla la tua email</string>
-    <string name="errorNewUser">Registrazione fallita</string>
-    <string name="resetEmail">Controlla l\'email segui le istruzioni per reimpostare la password!</string>
-    <string name="emailCheck">Email non registrata!</string>
+    <string name="ripeti_password">Confirm  Password</string>
+    <string name="hai_bisogno_della_password">Do you need the password?</string>
+    <string name="t1">The e-mail with which you registered is required.</string>
+    <string name="resetta_password">RESET PASSWORD</string>
+    <string name="errorEmail">Enter a valid email address</string>
+    <string name="errorLogin">Authentication failed Check your email and password</string>
+    <string name="errorCheck">Email not verified yet. Check your e-mail</string>
+    <string name="password_dimenticata">Forgot your password?</string>
+    <string name="non_hai_ancora_un_account_registrati">"Sign in "</string>
+    <string name="errorName">min 3 char</string>
+    <string name="errorPassword">Invalid password</string>
+    <string name="checkEmail">Verification email sent. Check your e-mail</string>
+    <string name="errorNewUser">Registration failed</string>
+    <string name="resetEmail">Check your email and follow the instructions to reset your password!</string>
+    <string name="emailCheck">Email not registered!</string>
     <string name="password" translatable="false">Password</string>
 
 
-    <string name="stato">Stato:</string>
+    <string name="stato">Status:</string>
     <string name="user" translatable="false">Email:</string>
-    <string name="non_connesso">Non connesso</string>
-    <string name="connesso">Connesso</string>
+    <string name="non_connesso">Disconnect</string>
+    <string name="connesso">Connected</string>
 
 
     <!-- alert strings -->
-    <string name="title">Nuovo Percorso</string>
-    <string name="message">Inserisci il nome della sessione</string>
-    <string name="btPositive">AGGIUNGI</string>
-    <string name="btAnnulla">CANCELLA</string>
-    <string name="errorInput">Inserisci un titolo valido</string>
+    <string name="title">New Path</string>
+    <string name="message">Enter the session name</string>
+    <string name="btPositive">ADD</string>
+    <string name="btAnnulla">CANCEL</string>
+    <string name="errorInput">Please enter a valid title</string>
     <string name="errorInputNumber" translatable="false">Inserisci numero valido</string>
 
-    <string name="tilte2">Attenzione!</string>
-    <string name="message2">Vuoi salvare la sessione prima di abbandonare?</string>
-    <string name="save">SALVA</string>
+    <string name="tilte2">Attention!</string>
+    <string name="message2">Do you want to save the session before leaving?</string>
+    <string name="save">SAVE</string>
     <string name="no" translatable="false">NO</string>
 
 
     <!--game string-->
-    <string name="domanda">DOMANDA</string>
+    <string name="domanda">QUESTION</string>
     <string name="_1" translatable="false">1</string>
-    <string name="inserisci_domanda">Inserisci la tua domanda</string>
-    <string name="inserisci_risposta">Inserisci una risposta</string>
-    <string name="salva_nsessione">Salva Sessione</string>
-    <string name="aggiungi_ndomanda">aggiungi domanda</string>
+    <string name="inserisci_domanda">Please enter your question</string>
+    <string name="inserisci_risposta">Enter an answer</string>
+    <string name="seleziona_risposta">Select the correct answer</string>
+    <string name="salva_nsessione">Save Session</string>
+    <string name="aggiungi_ndomanda">add question</string>
 
-    <string name="yes" translatable="false">YES</string>
+
+<!--da riordinare-->
+    <string name="lingua_italiana">italian</string>
+    <string name="lingua_inglese">english</string>
+    <string name="yes">YES</string>
+    <string name="welcome">Welcome to Magic Wand</string>
+    <string name="delete_path">Are you sure you want to delete the path?</string>
+    <string name="language_select">Language already selected!</string>
+    <string name="open">open</string>
+
 
 
 </resources>

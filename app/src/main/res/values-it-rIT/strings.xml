@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title">Nuovo Percorso</string>
+    <string name="non_hai_ancora_un_account_registrati">Non hai ancora un account? Registrati</string>
+    <string name="change_language">Cambia lingua</string>
+    <string name="percorso_registrato">Percorso Registrato</string>
+    <string name="sessioni_completate">Sessioni Completate</string>
+    <string name="cambia_password">Cambia Password</string>
+    <string name="informazioni">Informazioni</string>
+    <string name="registrati">REGISTRATI</string>
+    <string name="nome">Nome</string>
+    <string name="password_min_6_caratteri">Password (min 6 caratteri)</string>
+
+    <string name="ripeti_password">Ripeti Password</string>
+    <string name="hai_bisogno_della_password">Hai bisogno della Password?</string>
+    <string name="t1">E\' necessaria l\'e-mail con la quale hai effettuato l\'iscrizione.</string>
+    <string name="resetta_password">RESETTA PASSWORD</string>
+    <string name="errorEmail">Inserisci un indirizzo email valido</string>
+    <string name="errorLogin">Autenticazione fallita Controlla email e password</string>
+    <string name="errorCheck">Email non ancora verificata. Controlla la tua email</string>
+    <string name="password_dimenticata">Password dimenticata?</string>
+    <string name="errorName">minimo 3 caratteri</string>
+    <string name="errorPassword">Password non valida</string>
+    <string name="checkEmail">Email di verifica inviata. Controlla la tua email</string>
+    <string name="errorNewUser">Registrazione fallita</string>
+    <string name="resetEmail">Controlla l\'email segui le istruzioni per reimpostare la password!</string>
+    <string name="emailCheck">Email non registrata!</string>
+
+    <string name="stato">Stato:</string>
+    <string name="non_connesso">Non connesso</string>
+    <string name="connesso">Connesso</string>
+
+    <string name="message">Inserisci il nome della sessione</string>
+    <string name="btPositive">AGGIUNGI</string>
+    <string name="btAnnulla">CANCELLA</string>
+    <string name="errorInput">Inserisci un titolo valido</string>
+
+
+    <string name="tilte2">Attenzione!</string>
+    <string name="message2">Vuoi salvare la sessione prima di abbandonare?</string>
+    <string name="save">SALVA</string>
+
+    <string name="domanda">DOMANDA</string>
+    <string name="inserisci_domanda">Inserisci la tua domanda</string>
+    <string name="inserisci_risposta">Inserisci una risposta</string>
+    <string name="seleziona_risposta">Seleziona la risposta corretta</string>
+    <string name="salva_nsessione">Salva Sessione</string>
+    <string name="aggiungi_ndomanda">aggiungi domanda</string>
+
+    <string name="lingua_italiana">Italiano</string>
+    <string name="lingua_inglese">Inglese</string>
+    <string name="yes">SI</string>
+    <string name="welcome">Benvenuto su Magic Wand</string>
+    <string name="delete_path">Sei sicuro di voler eliminare il percorso?</string>
+    <string name="language_select">Lingua già selezionata!</string>
+    <string name="open">apri</string>
+</resources>

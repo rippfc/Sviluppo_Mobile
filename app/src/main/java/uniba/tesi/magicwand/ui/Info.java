@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import uniba.tesi.magicwand.MainActivity;
 import uniba.tesi.magicwand.R;
 
 
@@ -26,5 +27,11 @@ public class Info extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_info, container, false);
 
+    }
+
+    @Override
+    public void onDetach() {
+        ((MainActivity) getActivity()).getFloatingActionButton().show();
+        super.onDetach();
     }
 }

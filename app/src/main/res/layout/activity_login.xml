@@ -103,6 +103,29 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp">
+
+                <ImageView
+                    android:id="@+id/imageButtonGb"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:onClick="changeLanguage"
+                    app:srcCompat="@drawable/gb" />
+                <ImageView
+                    android:id="@+id/imageButtonIt"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:onClick="changeLanguage"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/it" />
+            </LinearLayout>
+
         </LinearLayout>
 
     </ScrollView>

@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Magic Wand</string>
+    <string name="change_language">Change Language</string>
     <string name="percorso_registrato">Registered Path</string>
     <string name="sessioni_completate">Sessions Completed</string>
+    <string name="cambia_password">Change Password</string>
+    <string name="informazioni">Information</string>
+
+
     <string name="registrati">SIGN IN</string>
     <string name="nome">Name</string>
-    <string name="ripeti_password">Confirm  Password</string>
-    <string name="t1">The e-mail with which you registered is required.</string>
-    <string name="resetta_password">RESET PASSWORD</string>
-    <string name="stato">Status:</string>
-    <string name="non_connesso">Disconnect</string>
-    <string name="connesso">Connected</string>
     <string name="password_min_6_caratteri">Password (min 6 characters)</string>
+    <string name="ripeti_password">Confirm  Password</string>
     <string name="hai_bisogno_della_password">Do you need the password?</string>
+    <string name="t1">The e-mail with which you registered is required.</string>
+
+    <string name="resetta_password">RESET PASSWORD</string>
     <string name="errorEmail">Enter a valid email address</string>
     <string name="errorLogin">Authentication failed Check your email and password</string>
     <string name="errorCheck">Email not verified yet. Check your e-mail</string>
@@ -24,8 +26,9 @@
     <string name="errorNewUser">Registration failed</string>
     <string name="resetEmail">Check your email and follow the instructions to reset your password!</string>
     <string name="emailCheck">Email not registered!</string>
-    <string name="cambia_password">Change Password</string>
-    <string name="informazioni">Information</string>
+    <string name="stato">Status:</string>
+    <string name="non_connesso">Disconnect</string>
+    <string name="connesso">Connected</string>
     <string name="title">New Path</string>
     <string name="message">Enter the session name</string>
     <string name="btPositive">ADD</string>
@@ -37,6 +40,15 @@
     <string name="domanda">QUESTION</string>
     <string name="inserisci_domanda">Please enter your question</string>
     <string name="inserisci_risposta">Enter an answer</string>
+    <string name="seleziona_risposta">Select the correct answer</string>
     <string name="salva_nsessione">Save Session</string>
     <string name="aggiungi_ndomanda">add question</string>
+
+    <string name="lingua_italiana">italian</string>
+    <string name="lingua_inglese">english</string>
+    <string name="yes">YES</string>
+    <string name="welcome">Welcome to Magic Wand</string>
+    <string name="delete_path">Are you sure you want to delete the path?</string>
+    <string name="language_select">Language already selected!</string>
+    <string name="open" translatable="false">open</string>
 </resources>

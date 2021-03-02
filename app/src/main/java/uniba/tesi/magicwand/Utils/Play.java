@@ -14,6 +14,9 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.InputType;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -46,7 +49,8 @@ public class Play extends AppCompatActivity {
      */
     public static final String TAG = Play.class.getName();
 
-    private String mSession,mUser;
+    private String mSession;
+    private String mUser;
 
     private TextView mPlayer;
     private TextView mPoint;
@@ -76,7 +80,7 @@ public class Play extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
-        AlertNumberPlayer();
+        alertNumberPlayer();
         initUI();
 
 
@@ -108,9 +112,41 @@ public class Play extends AppCompatActivity {
 
         //Log.i(TAG,mTime.getText().toString());
 
-        //updateQuestion();
-        setup_questions();
+        /*updateQuestion();*/
+       setup_questions();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+       getMenuInflater().inflate(R.menu.visit_session, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.refresh:
+                Log.d(TAG, "Clicked on refresh!");// refresch senza ricaricare tutto
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
+                return true;
+            case R.id.finish:
+                alertCloseSession();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    /* private void updateQuestion() {
+        ArrayList<Question> arrayList = new ArrayList<>();
+        myRef= FirebaseDatabase.getInstance().getReference().child(mUser).child(mSession).child("Questions");
+
+
+
+    }*/
 
     private void setup_questions() {
         myRef= FirebaseDatabase.getInstance().getReference().child(mUser).child(mSession).child("Questions").child(String.valueOf(computerCount));
@@ -203,28 +239,32 @@ public class Play extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-    final AlertDialog.Builder builder= new AlertDialog.Builder(this,R.style.CustomAlertDialog);
-    builder.setTitle(R.string.tilte2)
-            .setCancelable(false)
-            .setMessage("Vuoi terminare la sessione?")
-            .setIcon(android.R.drawable.ic_dialog_alert);
-
-    builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            finish();
-        }
-    });
-    builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            dialog.cancel();
-        }
-    });
-    builder.show();
+        alertCloseSession();
     }
 
-    private void AlertNumberPlayer() {//todo:controllo sui numeri inseriti e correggi tutti i dialog in questo modo
+    private void alertCloseSession() {
+        final AlertDialog.Builder builder= new AlertDialog.Builder(this,R.style.CustomAlertDialog);
+        builder.setTitle(R.string.tilte2)
+                .setCancelable(false)
+                .setMessage("Vuoi terminare la sessione?")
+                .setIcon(android.R.drawable.ic_dialog_alert);
+
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+    }
+
+    private void alertNumberPlayer() {//todo:controllo sui numeri inseriti e correggi tutti i dialog in questo modo
         final EditText inputText = new EditText(this);
         inputText.setInputType(InputType.TYPE_CLASS_NUMBER);
         inputText.setText("1");
@@ -252,8 +292,8 @@ public class Play extends AppCompatActivity {
                     }else{
                         totalPlayer=Integer.parseInt(input);
 
-                        Toast.makeText(getApplicationContext(), totalPlayer+"string:"+input, Toast.LENGTH_SHORT).show();
-                        //mPlayer.setText(String.valueOf(totalPlayer));
+                        Toast.makeText(getApplicationContext(), "int="+totalPlayer+"string text:"+input, Toast.LENGTH_SHORT).show();
+                        mPlayer.setText(input);
                         alertDialog.dismiss();
                     }
                 }catch (NumberFormatException e){

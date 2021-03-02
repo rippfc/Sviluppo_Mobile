@@ -5,7 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +22,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.Locale;
+
+import uniba.tesi.magicwand.LocalManger;
 import uniba.tesi.magicwand.MainActivity;
 import uniba.tesi.magicwand.R;
 
@@ -32,10 +39,10 @@ public class Login extends AppCompatActivity {
     private EditText inputEmail;
     private EditText inputPassword;
     private Button btnLogin;
-
     private ProgressBar loginProgressBar;
-
     private FirebaseAuth mAuth;
+    private String currentLanguage = "en";
+    private  String currentLang;
 
 
     @Override
@@ -127,7 +134,31 @@ public class Login extends AppCompatActivity {
         txToRegister=(TextView) findViewById(R.id.text_To_Register);
         txRememberPass=(TextView)findViewById(R.id.text_To_reset);
         loginProgressBar=(ProgressBar)findViewById(R.id.progressBar);
+        currentLanguage = getIntent().getStringExtra(currentLang);
     }
 
 
+    public void changeLanguage(View view) {
+        switch (view.getId()){
+            case R.id.imageButtonIt:
+                setLocale("it",currentLanguage);
+                break;
+            case R.id.imageButtonGb:
+                setLocale("en",currentLanguage);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void setLocale(String localName,String current) {
+        if(!localName.equals(currentLanguage)){
+            LocalManger.setLocale(this, localName);
+            finish();
+            startActivity(getIntent().putExtra(currentLang,localName));
+        } else {
+            Toast.makeText(Login.this, R.string.language_select, Toast.LENGTH_SHORT).show();
+        }
+
+    }
 }

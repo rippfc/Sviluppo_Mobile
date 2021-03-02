@@ -3,10 +3,13 @@ package uniba.tesi.magicwand;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,6 +32,8 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import java.util.Locale;
 
 import uniba.tesi.magicwand.Aut_Controller.Login;
 import uniba.tesi.magicwand.Create_Quiz.CreateNewSession;
@@ -54,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
    // public static String CURRENT_TAG = TAG;
     public static String CURRENT_SESSION;
 
+    //todo: for language
+    private Locale locale;
+    private String currentLanguage = "en";
+    private  String currentLang;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         fab = findViewById(R.id.fab);
         auth= FirebaseAuth.getInstance();
+
+        currentLanguage = getIntent().getStringExtra(currentLang);
 
 
 
@@ -84,12 +98,8 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, auth.getCurrentUser().getDisplayName()+" "+CURRENT_SESSION, Toast.LENGTH_SHORT).show();
                         break;
                     default:
-                        //Toast.makeText(MainActivity.this, CURRENT_TAG, Toast.LENGTH_SHORT).show();
-                        showAlertDialog();
-                        //break;
+                         showAlertDialog();
                 }
-
-
             }
         });
 
@@ -149,6 +159,52 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        Log.d(TAG, "Inflating menu");
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        String[] listItems = new String[] { getResources().getString(R.string.lingua_inglese), getResources().getString(R.string.lingua_italiana)};
+        if (item.getItemId()== R.id.action_settings){
+        AlertDialog.Builder builder= new AlertDialog.Builder(this);
+        builder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                switch (which){
+                    case 0:
+                        setLocale("en",currentLanguage);
+                        break;
+                    case 1:
+                        setLocale("it",currentLanguage);
+                        break;
+                }
+            }
+        });
+        builder.setNeutralButton(R.string.btAnnulla, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        AlertDialog alertDialog=builder.create();
+        alertDialog.setCancelable(false);
+        alertDialog.show();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
+
     public FloatingActionButton getFloatingActionButton(){
         return fab;
     }
@@ -160,18 +216,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+    private void setLocale(String localName,String current) {
+        if(!localName.equals(currentLanguage)){
+            LocalManger.setLocale(this, localName);
+            finish();
+            startActivity(getIntent().putExtra(currentLang,localName));
+        } else {
+            Toast.makeText(MainActivity.this, R.string.language_select, Toast.LENGTH_SHORT).show();
+        }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
     }
 
     private void showAlertDialog() {

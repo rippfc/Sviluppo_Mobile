@@ -137,10 +137,10 @@ public class PercorsoRegistrato extends Fragment {
         // setup the alert builder
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext(),R.style.CustomAlertDialog);
         builder.setTitle(R.string.tilte2)
-                .setMessage("Sei sicuro di voler eliminare il percorso?")
+                .setMessage(R.string.delete_path)
                 .setIcon(android.R.drawable.ic_dialog_alert);
 
-        builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(auth);

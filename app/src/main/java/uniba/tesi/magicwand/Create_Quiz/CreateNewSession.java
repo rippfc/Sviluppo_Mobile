@@ -5,12 +5,17 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -227,17 +232,17 @@ public class CreateNewSession extends AppCompatActivity {
     private boolean checkQuestions() {
         boolean check=false;
         if(TextUtils.isEmpty(question.getText().toString().trim()))
-            question.setError("Inserisci una domanda");
+            question.setError(getString(R.string.inserisci_domanda));
         else if (TextUtils.isEmpty(aText.getText().toString().trim()))
-            aText.setError("Inserisci una risposta");
+            aText.setError(getString(R.string.inserisci_risposta));
         else if (TextUtils.isEmpty(bText.getText().toString().trim()))
-            bText.setError("Inserisci una risposta");
+            bText.setError(getString(R.string.inserisci_risposta));
         else if (TextUtils.isEmpty(cText.getText().toString().trim()))
-            cText.setError("Inserisci una risposta");
+            cText.setError(getString(R.string.inserisci_risposta));
         else if (TextUtils.isEmpty(dText.getText().toString().trim()))
-            dText.setError("Inserisci una risposta");
+            dText.setError(getString(R.string.inserisci_risposta));
         else if (selectedOption.equals(""))
-            Toast.makeText(this, "Seleziona la risposta corretta", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.seleziona_risposta, Toast.LENGTH_SHORT).show();
         else {
             Question newQuest =new Question();
             //newQuest.setSeason(nameSeason);
@@ -291,6 +296,23 @@ public class CreateNewSession extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.visit_session, menu);
+        MenuItem menuItem = menu.findItem(R.id.refresh).setVisible(false);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.finish:
+                showAlertDialogButtonClicked();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 
 
