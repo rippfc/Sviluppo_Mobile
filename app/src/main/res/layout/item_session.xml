@@ -130,7 +130,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:text="Risposta corretta:" />
+                android:text="@string/correct_answer" />
 
             <TextView
                 android:id="@+id/correct_ans"

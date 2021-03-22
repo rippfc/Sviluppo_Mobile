@@ -9,8 +9,8 @@
 
     <string name="registrati">SIGN IN</string>
     <string name="nome">Name</string>
-    <string name="password_min_6_caratteri">Password (min 6 characters)</string>
-    <string name="ripeti_password">Confirm  Password</string>
+    <string name="password_min_6_caratteri">Password (Minimum 6 characters)</string>
+    <string name="ripeti_password">Confirm Password</string>
     <string name="hai_bisogno_della_password">Do you need the password?</string>
     <string name="t1">The e-mail with which you registered is required.</string>
 
@@ -19,7 +19,7 @@
     <string name="errorLogin">Authentication failed Check your email and password</string>
     <string name="errorCheck">Email not verified yet. Check your e-mail</string>
     <string name="password_dimenticata">Forgot your password?</string>
-    <string name="non_hai_ancora_un_account_registrati">"Sign in "</string>
+    <string name="new_account">Don\'t have an account yet? Register now</string>
     <string name="errorName">min 3 char</string>
     <string name="errorPassword">Invalid password</string>
     <string name="checkEmail">Verification email sent. Check your e-mail</string>
@@ -48,7 +48,29 @@
     <string name="lingua_inglese">english</string>
     <string name="yes">YES</string>
     <string name="welcome">Welcome to Magic Wand</string>
-    <string name="delete_path">Are you sure you want to delete the path?</string>
+    <string name="delete_path">Are you sure you want to delete this path?</string>
     <string name="language_select">Language already selected!</string>
-    <string name="open" translatable="false">open</string>
+    <string name="open">open</string>
+    <string name="made_by"><font size="20">made by</font><font size="25"><b> Antonio Ricchetti</b></font></string>
+    <string name="version">version: </string>
+    <string name="chooseEmail">Choose an Email client :</string>
+    <string name="correct_answer">Correct answer</string>
+    <string name="wrong_answer">Wrong answer</string>
+    <string name="many_player">How many players are in the session?</string>
+    <string name="score">score</string>
+    <string name="end_session">Do you want to end the session?</string>
+    <string name="errorInputNumber">Please enter valid number</string>
+    <string name="saved">saved</string>
+
+    <plurals name="number_of_player">
+        <item quantity="one">only one player participates in this session</item>
+        <item quantity="other">%d players participate in this session</item>
+    </plurals>
+    <string name="min_max">min 1 max 10</string>
+    <string name="player">"player "</string>
+    <string name="visitor">LOGIN AS VISITOR</string>
+    <string name="close">close</string>
+    <string name="no_path">NO PATH PRESENT</string>
+    <string name="add_one">ADD ONE</string>
+    <string name="no_path_completed">NO PATH COMPLETED</string>
 </resources>

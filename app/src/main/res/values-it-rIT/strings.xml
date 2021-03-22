@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="title">Nuovo Percorso</string>
-    <string name="non_hai_ancora_un_account_registrati">Non hai ancora un account? Registrati</string>
+    <string name="new_account">Non hai ancora un account? Registrati</string>
     <string name="change_language">Cambia lingua</string>
     <string name="percorso_registrato">Percorso Registrato</string>
     <string name="sessioni_completate">Sessioni Completate</string>
@@ -51,7 +51,29 @@
     <string name="lingua_inglese">Inglese</string>
     <string name="yes">SI</string>
     <string name="welcome">Benvenuto su Magic Wand</string>
-    <string name="delete_path">Sei sicuro di voler eliminare il percorso?</string>
+    <string name="delete_path">Sei sicuro di voler eliminare questo percorso?</string>
     <string name="language_select">Lingua già selezionata!</string>
     <string name="open">apri</string>
+    <string name="made_by"><font size="20">sviluppata da</font><font size="25"><b> Antonio Ricchetti</b></font></string>
+    <string name="version">versione: </string>
+    <string name="chooseEmail">Scegli un client di posta elettronica :</string>
+    <string name="correct_answer">Risposta corretta</string>
+    <string name="wrong_answer">Risposta sbagliata</string>
+    <string name="many_player">Quanti giocatori partecipano alla sessione?</string>
+    <string name="score">punteggio</string>
+    <string name="end_session">Vuoi terminare la sessione?</string>
+    <string name="errorInputNumber">Inserisci numero valido</string>
+    <string name="saved">salvataggio effettuato</string>
+
+    <plurals name="number_of_player">
+        <item quantity="one">in questa sessione partecipa un solo giocatore</item>
+        <item quantity="other">in questa sessione partecipano %d giocatori</item>
+    </plurals>
+    <string name="min_max">minimo 1 massimo 10</string>
+    <string name="player">giocatore</string>
+    <string name="visitor">ACCEDI COME VISITATORE</string>
+    <string name="close">chiudi</string>
+    <string name="no_path">NESSUN PERCORSO PRESENTE</string>
+    <string name="add_one">AGGIUNGINE UNO</string>
+    <string name="no_path_completed">NESSUN PERCORSO COMPLETATO</string>
 </resources>

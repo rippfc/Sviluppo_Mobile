@@ -1,15 +1,13 @@
 package uniba.tesi.magicwand;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,6 +36,7 @@ import java.util.Locale;
 import uniba.tesi.magicwand.Aut_Controller.Login;
 import uniba.tesi.magicwand.Create_Quiz.CreateNewSession;
 import uniba.tesi.magicwand.Utils.DialogResetPassword;
+import uniba.tesi.magicwand.Utils.LocaleManager;
 import uniba.tesi.magicwand.Utils.Play;
 
 public class MainActivity extends AppCompatActivity {
@@ -59,12 +58,13 @@ public class MainActivity extends AppCompatActivity {
    // public static String CURRENT_TAG = TAG;
     public static String CURRENT_SESSION;
 
-    //todo: for language
-    private Locale locale;
-    private String currentLanguage = "en";
-    private  String currentLang;
 
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+        LocaleManager.setLocale(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,31 +77,6 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         fab = findViewById(R.id.fab);
         auth= FirebaseAuth.getInstance();
-
-        currentLanguage = getIntent().getStringExtra(currentLang);
-
-
-
-
-
-
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {//azione pulsante
-                switch (navController.getCurrentDestination().getId()){
-                    case R.id.fragmentShowSession:
-                        Intent intent= new Intent(MainActivity.this, Play.class);
-                        intent.putExtra("Session",CURRENT_SESSION);
-                        intent.putExtra("User",auth.getCurrentUser().getDisplayName());
-                        startActivity(intent);
-                        Toast.makeText(MainActivity.this, auth.getCurrentUser().getDisplayName()+" "+CURRENT_SESSION, Toast.LENGTH_SHORT).show();
-                        break;
-                    default:
-                         showAlertDialog();
-                }
-            }
-        });
 
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -122,6 +97,27 @@ public class MainActivity extends AppCompatActivity {
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+
+
+
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {//azione pulsante
+                switch (navController.getCurrentDestination().getId()){
+                    case R.id.fragmentShowSession:
+                        Intent intent= new Intent(MainActivity.this, Play.class);
+                        intent.putExtra("Session",CURRENT_SESSION);
+                        intent.putExtra("User",auth.getCurrentUser().getDisplayName());
+                        startActivity(intent);
+                        break;
+                    default:
+                         showAlertDialog();
+                }
+            }
+        });
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -177,10 +173,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 switch (which){
                     case 0:
-                        setLocale("en",currentLanguage);
+                            setNewLocale(MainActivity.this, LocaleManager.ENGLISH);
                         break;
                     case 1:
-                        setLocale("it",currentLanguage);
+                            setNewLocale(MainActivity.this, LocaleManager.ITALIAN);
                         break;
                 }
             }
@@ -216,15 +212,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void setLocale(String localName,String current) {
-        if(!localName.equals(currentLanguage)){
-            LocalManger.setLocale(this, localName);
-            finish();
-            startActivity(getIntent().putExtra(currentLang,localName));
-        } else {
+    private void setNewLocale(Context mContext, String language) {
+        if (Locale.getDefault().getLanguage().equals(language)){//todo: verifica nel metodo
             Toast.makeText(MainActivity.this, R.string.language_select, Toast.LENGTH_SHORT).show();
+        }else{
+            LocaleManager.setNewLocale(this, language);
+            recreate();
         }
-
     }
 
     private void showAlertDialog() {

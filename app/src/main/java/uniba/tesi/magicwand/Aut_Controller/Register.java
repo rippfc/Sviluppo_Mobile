@@ -31,8 +31,8 @@ public class Register extends AppCompatActivity {
     private EditText inputName;
     private EditText repeatPassword;
     private Button btRegister;
-
     private FirebaseAuth mAuth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,8 +40,6 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         initUI();//per referenziare
-        
-        mAuth = FirebaseAuth.getInstance();
 
 
         btRegister.setOnClickListener(new View.OnClickListener() {
@@ -56,7 +54,7 @@ public class Register extends AppCompatActivity {
                 if(nome.isEmpty()||nome.length()<3) {
                     inputName.setError(getString(R.string.errorName));
                     return;
-                }else if(email.isEmpty()||!(email.contains("@"))){
+                }else if(email.isEmpty()||!(email.contains("@"))||!(email.contains("."))){
                     inputEmail.setError(getString(R.string.errorEmail));
                 }else if(password.isEmpty()||password.length()<6){
                     Toast.makeText(Register.this, R.string.errorPassword, Toast.LENGTH_SHORT).show();
@@ -68,7 +66,6 @@ public class Register extends AppCompatActivity {
 
             }
         });
-
     }
 
     private void initUI() {
@@ -77,6 +74,7 @@ public class Register extends AppCompatActivity {
         inputPassword=(EditText)findViewById(R.id.txPassword);
         repeatPassword=(EditText)findViewById(R.id.txRipetiPassword);
         btRegister=(Button)findViewById(R.id.btn_regiter);
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -120,9 +118,9 @@ public class Register extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Log.d("setNome","nome caricato con successo");
+                    Log.d(TAG, "nome caricato");
                 }else{
-                    Log.d("setNome","erorre");
+                    Log.d(TAG, "nome non caricato");
                 }
             }
         });

@@ -4,15 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Locale;
 
-import uniba.tesi.magicwand.LocalManger;
+import uniba.tesi.magicwand.Utils.LocaleManager;
 import uniba.tesi.magicwand.MainActivity;
 import uniba.tesi.magicwand.R;
 
@@ -41,17 +40,25 @@ public class Login extends AppCompatActivity {
     private Button btnLogin;
     private ProgressBar loginProgressBar;
     private FirebaseAuth mAuth;
-    private String currentLanguage = "en";
-    private  String currentLang;
+    private ImageView flagGb;
+    private ImageView flagIt;
+    private TextView visitor;
 
+
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+        LocaleManager.setLocale(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //Get Firebase auth instance
-        mAuth = FirebaseAuth.getInstance();
+        initUI();
+
 
         if (mAuth.getCurrentUser() != null) {
 
@@ -63,10 +70,6 @@ public class Login extends AppCompatActivity {
                 finish();
             }
         }
-
-        initUI();
-
-
 
         txToRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,12 +88,13 @@ public class Login extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, "login properties");
                 String email=inputEmail.getText().toString().trim();
                 String password=inputPassword.getText().toString();
 
-                if(email.isEmpty()||!email.contains("@")){
+                if(email.isEmpty()||!email.contains("@")||!email.contains(".")){
                     inputEmail.setError(getString(R.string.errorEmail));
-                   return;
+                    return;
                 }else if(password.isEmpty()||password.length()<6){
                     Toast.makeText(Login.this, R.string.errorPassword, Toast.LENGTH_SHORT).show();
                     return;
@@ -99,6 +103,12 @@ public class Login extends AppCompatActivity {
                     loginUser(email,password);
                 }
 
+            }
+        });
+        visitor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Login.this,Visitor.class));
             }
         });
     }
@@ -133,32 +143,41 @@ public class Login extends AppCompatActivity {
         btnLogin=(Button)findViewById(R.id.btn_login);
         txToRegister=(TextView) findViewById(R.id.text_To_Register);
         txRememberPass=(TextView)findViewById(R.id.text_To_reset);
-        loginProgressBar=(ProgressBar)findViewById(R.id.progressBar);
-        currentLanguage = getIntent().getStringExtra(currentLang);
+        loginProgressBar=(ProgressBar)findViewById(R.id.progressBarLg);
+        flagGb=(ImageView)findViewById(R.id.imageButtonGb);
+        flagIt=(ImageView)findViewById(R.id.imageButtonIt);
+        visitor=(TextView)findViewById(R.id.tx_visitor);
+        //Get Firebase auth instance
+        mAuth = FirebaseAuth.getInstance();
+        checkFlag();
+    }
+
+    private void checkFlag() {
+       // Toast.makeText(this, Locale.getDefault().getLanguage(), Toast.LENGTH_SHORT).show();
+        if (Locale.getDefault().getLanguage().equals("en")){
+            flagGb.setVisibility(View.GONE);
+            flagIt.setVisibility(View.VISIBLE);
+        }else{
+            flagIt.setVisibility(View.GONE);
+            flagGb.setVisibility(View.VISIBLE);}
     }
 
 
     public void changeLanguage(View view) {
         switch (view.getId()){
             case R.id.imageButtonIt:
-                setLocale("it",currentLanguage);
+                setNewLocale(this, LocaleManager.ITALIAN);
                 break;
             case R.id.imageButtonGb:
-                setLocale("en",currentLanguage);
+                setNewLocale(this, LocaleManager.ENGLISH);
                 break;
             default:
                 break;
         }
     }
 
-    private void setLocale(String localName,String current) {
-        if(!localName.equals(currentLanguage)){
-            LocalManger.setLocale(this, localName);
-            finish();
-            startActivity(getIntent().putExtra(currentLang,localName));
-        } else {
-            Toast.makeText(Login.this, R.string.language_select, Toast.LENGTH_SHORT).show();
-        }
-
-    }
+    private void setNewLocale(Context mContext, String language) {
+        LocaleManager.setNewLocale(this, language);
+        recreate();
+   }
 }

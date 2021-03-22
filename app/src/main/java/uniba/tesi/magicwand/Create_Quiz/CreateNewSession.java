@@ -2,10 +2,10 @@ package uniba.tesi.magicwand.Create_Quiz;
 
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +27,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Map;
+
+import uniba.tesi.magicwand.Utils.LocaleManager;
 import uniba.tesi.magicwand.Model.Question;
 import uniba.tesi.magicwand.R;
 
@@ -54,8 +56,8 @@ public class CreateNewSession extends AppCompatActivity {
 
     //private Button bt1; set button for read card
 
-    String file ="file";
-    String selectedOption = "";
+    private String file ="file";
+    private String selectedOption = "";
 
     ArrayList<Question> listQuest;
     JSONArray jsonArray;
@@ -64,7 +66,11 @@ public class CreateNewSession extends AppCompatActivity {
     private FirebaseAuth auth;
     private DatabaseReference myRef;
 
-
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(newBase);
+        LocaleManager.setLocale(this);
+    }
 
 
     @Override
@@ -108,8 +114,10 @@ public class CreateNewSession extends AppCompatActivity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(checkQuestions())
+                if(checkQuestions()){
                     saveQuestion();
+                    Toast.makeText(CreateNewSession.this, R.string.saved, Toast.LENGTH_SHORT).show();
+                }
                 else
                     saveQuestion();
                 finish();
@@ -191,7 +199,7 @@ public class CreateNewSession extends AppCompatActivity {
         clearAllQuestion();
         Question question1= new Question();
         question1 = listQuest.get(position-1);
-        questionNumber.setText(String.valueOf(question1.getId()));
+  /*      questionNumber.setText(String.valueOf(question1.getId()));*/
         question.setText(question1.getQuestion());
         aText.setText(question1.getOpt_a());
         bText.setText(question1.getOpt_b());
@@ -245,8 +253,6 @@ public class CreateNewSession extends AppCompatActivity {
             Toast.makeText(this, R.string.seleziona_risposta, Toast.LENGTH_SHORT).show();
         else {
             Question newQuest =new Question();
-            //newQuest.setSeason(nameSeason);
-            newQuest.setId(currentQuestion);
             newQuest.setQuestion(question.getText().toString());
             newQuest.setOpt_a(aText.getText().toString());
             newQuest.setOpt_b(aText.getText().toString());
@@ -258,9 +264,7 @@ public class CreateNewSession extends AppCompatActivity {
 
             JSONObject jsonObject = new JSONObject();
             try {
-              //  jsonObject.put("season",nameSeason);
                 jsonObject.put("question",question.getText().toString());
-                jsonObject.put("id",currentQuestion);// todo:controlla bene mod fatta da poco
                 jsonObject.put("opt_a",aText.getText().toString());
                 jsonObject.put("opt_b",bText.getText().toString());
                 jsonObject.put("opt_c",cText.getText().toString());
@@ -291,7 +295,6 @@ public class CreateNewSession extends AppCompatActivity {
             file =auth.getCurrentUser().getDisplayName();
             if(!TextUtils.isEmpty(file))
                 myRef.child(file).child(nameSession).setValue(result);
-            //TODO:myRef.child("User").child(file).child("Season").child(nameSeason).setValue(result); per specificare i figli//eliminalo alla fine
         }
         finish();
     }

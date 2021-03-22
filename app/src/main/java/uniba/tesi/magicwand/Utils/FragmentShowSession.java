@@ -105,7 +105,7 @@ public class FragmentShowSession extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         /*MainActivity.CURRENT_TAG=TAG;TODO:DA CONTROLLARE SE USARLO O NO*/
-        MainActivity.CURRENT_SESSION=mParam2;//TODO PER SALVARE LA SESSIONE SELEZIONATA
+        MainActivity.CURRENT_SESSION=mParam2;//TODO PER SALVARE LA SESSIONE SELEZIONATA E CAMBIARE
 
         view= inflater.inflate(R.layout.fragment_show_session, container, false);
         // Inflate the layout for this fragment
@@ -175,10 +175,6 @@ public class FragmentShowSession extends Fragment {
         super.onDetach();
     }
 
-    /*  public void showOtherFragment()    {
-        Fragment fr=FragmentPlay.newInstance(mParam1,mParam2);
-        OnFragmentInteractionListener fc=(OnFragmentInteractionListener)getActivity();
-        fc.replaceFragment(fr);
-    }*/
+
 }
 

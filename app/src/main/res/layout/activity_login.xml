@@ -46,7 +46,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/email"
-                    android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true" />
 
@@ -68,19 +67,35 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <TextView
-                android:id="@+id/text_To_reset"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginBottom="30dp"
-                android:text="@string/password_dimenticata"
-                android:textColor="@color/textColor"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/text_To_reset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/password_dimenticata"
+                    android:textColor="@color/textColor"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tx_visitor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:text="@string/visitor"
+                    android:textAlignment="textEnd"
+                    android:textSize="15sp"
+                    android:textColor="@color/textColor"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <ProgressBar
-                android:id="@+id/progressBar"
+                android:id="@+id/progressBarLg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -97,14 +112,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="@string/non_hai_ancora_un_account_registrati"
+                android:text="@string/new_account"
                 android:textAlignment="center"
                 android:textColor="@color/textColor"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_gravity="center"
@@ -114,16 +129,16 @@
                     android:id="@+id/imageButtonGb"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:layout_weight="1"
                     android:onClick="changeLanguage"
-                    app:srcCompat="@drawable/gb" />
+                    app:srcCompat="@drawable/gb"
+                    android:visibility="gone"/>
                 <ImageView
                     android:id="@+id/imageButtonIt"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:onClick="changeLanguage"
-                    android:layout_weight="1"
-                    app:srcCompat="@drawable/it" />
+                    app:srcCompat="@drawable/it"
+                    android:visibility="gone"/>
             </LinearLayout>
 
         </LinearLayout>

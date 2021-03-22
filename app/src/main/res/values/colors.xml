@@ -15,5 +15,31 @@
     <color name="ic_launcher_background">#FFFFFF</color>
     <color name="color_item">#8673A89E</color>
 
+ <!--   color of player-->
+    <color name="black">#000000</color>
+    <color name="red">#FF0000</color>
+    <color name="orange">#FF7F00</color>
+    <color name="gray">#808080</color>
+    <color name="olive">#808000</color>
+    <color name="cyan">#00FFFF</color>
+    <color name="azure">#007FFF</color>
+    <color name="blue">#0000FF</color>
+    <color name="violet">#7F00FF</color>
+    <color name="magenta">#FF00FF</color>
+
+
+
+    <array name="paint">
+        <item>@color/black</item>
+        <item>@color/red</item>
+        <item>@color/orange</item>
+        <item>@color/olive</item>
+        <item>@color/gray</item>
+        <item>@color/cyan</item>
+        <item>@color/azure</item>
+        <item>@color/blue</item>
+        <item>@color/violet</item>
+        <item>@color/magenta</item>
+    </array>
 
 </resources>

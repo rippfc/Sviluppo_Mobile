@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.Info"
-    android:background="#1c2132">
+    android:background="#000000">
 
 
     <LinearLayout
@@ -21,22 +21,22 @@
             android:layout_margin="10dp"/>
 
         <TextView
+            android:id="@+id/version"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="version 1.1"
             android:gravity="center"
             android:textSize="20sp"
-            android:textColor="#fff"/>
+            android:textColor="#FFFFFF"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="svilippata da Antonio Ricchetti"
+            android:text="@string/made_by"
             android:gravity="center"
             android:textSize="20sp"
-            android:textColor="#fff" />
+            android:textColor="#FFFFFF" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,22 +46,11 @@
             android:layout_margin="10dp">
 
             <Button
-                android:id="@+id/Button01"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/ic_facebook"
-                android:elevation="4dp"
-                style="?android:attr/buttonBarButtonStyle"/>
-
-            <Button
                 android:id="@+id/Button02"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:layout_margin="10dp"
-                android:background="@drawable/ic_message"
-                android:elevation="4dp"
-                style="?android:attr/buttonBarButtonStyle"/>
+                android:background="@drawable/ic_message"/>
 
         </LinearLayout>
     </LinearLayout>

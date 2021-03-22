@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class Question implements Serializable {
 
-    private int id;
     private String question;
     private String opt_a;
     private String opt_b;
@@ -13,9 +12,8 @@ public class Question implements Serializable {
     private String answer;
 
 
-    public Question(int id, String question, String opt_a, String opt_b, String opt_c, String opt_d, String answer) {
+    public Question( String question, String opt_a, String opt_b, String opt_c, String opt_d, String answer) {
 
-        this.id = id;
         this.question = question;
         this.opt_a = opt_a;
         this.opt_b = opt_b;
@@ -27,22 +25,12 @@ public class Question implements Serializable {
     public Question() {
     }
 
-    //getter and setter
-
-    public int getId() {
-        return id;
-    }
-
     public String getQuestion() {
         return question;
     }
 
     public void setQuestion(String question) {
         this.question = question;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getOpt_a() {

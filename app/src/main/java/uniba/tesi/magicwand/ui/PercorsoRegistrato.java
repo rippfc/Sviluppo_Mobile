@@ -2,11 +2,12 @@ package uniba.tesi.magicwand.ui;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,12 +24,12 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
-import uniba.tesi.magicwand.Utils.FragmentShowSession;
-import uniba.tesi.magicwand.Utils.Play;
 import uniba.tesi.magicwand.ViewHolder.MyViewHolderItem;
 import uniba.tesi.magicwand.R;
 
@@ -43,27 +44,53 @@ public class PercorsoRegistrato extends Fragment {
     private LinearLayoutManager linearLayoutManager;
     private FirebaseRecyclerAdapter adapter;
     private ProgressBar progressBar;
-    private TextView textView;
+    private LinearLayout mlinearLayout;
     private View root;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         root = inflater.inflate(R.layout.fragment_percorso_registrato, container, false);
-        progressBar = (ProgressBar)root.findViewById(R.id.progressBar);
-        textView = (TextView)root.findViewById(R.id.ptext);
+        progressBar = (ProgressBar)root.findViewById(R.id.progressBarPr);
         auth = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        mlinearLayout=(LinearLayout)root.findViewById(R.id.linearLayoutPath);
+        referenceExists(auth);
+
+        buildRecyclerView();
+        return root;
+    }
+
+    private void buildRecyclerView() {
         recyclerView=(RecyclerView)root.findViewById(R.id.list);
         linearLayoutManager=new LinearLayoutManager(getContext());
         fetch(root);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
-        return root;
+    }
+
+    private void referenceExists(String ref){
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference(ref);
+        rootRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    Log.d(TAG,"riferimento esiste");
+                } else {
+                    mlinearLayout.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                    Log.d(TAG,"riferimento non esiste");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void fetch(final View view) {
-        Query query = FirebaseDatabase.getInstance().getReference()
-                .child(auth);
+        Query query = FirebaseDatabase.getInstance().getReference(auth);
 
         FirebaseRecyclerOptions<String> option= new FirebaseRecyclerOptions.Builder<String>()
                 .setQuery(query, new SnapshotParser<String>() {
@@ -85,8 +112,7 @@ public class PercorsoRegistrato extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull MyViewHolderItem holder, int position, @NonNull final String model) {
                 progressBar.setVisibility(View.GONE);
-                //TODO: INSERISCI UN TIMER CHE DOPO 5 SEC VISUALIZZA NESSUN PERCORSO PRESENTE
-                textView.setVisibility(View.GONE);
+                mlinearLayout.setVisibility(View.GONE);
                 holder.setNameSession(model);
                 holder.nameSession.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -145,6 +171,8 @@ public class PercorsoRegistrato extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference().child(auth);
                 databaseReference.child(key).removeValue();
+                DatabaseReference dbCompleted = FirebaseDatabase.getInstance().getReference().child("Completed");
+                dbCompleted.child(key).removeValue();
             }
         })
 
