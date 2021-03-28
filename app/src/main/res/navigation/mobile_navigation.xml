@@ -41,12 +41,12 @@
   <!--  //todo: mod1-->
     <fragment
         android:id="@+id/fragmentShowSession"
-        android:name="uniba.tesi.magicwand.Utils.FragmentShowSession"
+        android:name="uniba.tesi.magicwand.fragment.FragmentShowSession"
         android:label="fragment_show_session"
         tools:layout="@layout/fragment_show_session" />
     <fragment
         android:id="@+id/fragmentShowCompleted"
-        android:name="uniba.tesi.magicwand.FragmentShowCompleted"
+        android:name="uniba.tesi.magicwand.fragment.FragmentShowCompleted"
         android:label="fragment_show_completed"
         tools:layout="@layout/fragment_show_completed" />
 

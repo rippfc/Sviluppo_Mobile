@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,7 +21,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.net.InetAddress;
 import java.util.Locale;
 
 import uniba.tesi.magicwand.Utils.LocaleManager;
@@ -55,6 +58,14 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try{
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+            Log.d(TAG,FirebaseDatabase.getInstance().toString());
+        }catch (Exception e){
+            Log.d(TAG,"SetPresistenceEnabled:Fail"+FirebaseDatabase.getInstance().toString());
+            e.printStackTrace();
+        }
+        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);//Todo:abilitare offline
         setContentView(R.layout.activity_login);
 
         initUI();
@@ -89,20 +100,24 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "login properties");
-                String email=inputEmail.getText().toString().trim();
-                String password=inputPassword.getText().toString();
+                if (isNetworkConnected()) {
+                    String email = inputEmail.getText().toString().trim();
+                    String password = inputPassword.getText().toString();
 
-                if(email.isEmpty()||!email.contains("@")||!email.contains(".")){
-                    inputEmail.setError(getString(R.string.errorEmail));
-                    return;
-                }else if(password.isEmpty()||password.length()<6){
-                    Toast.makeText(Login.this, R.string.errorPassword, Toast.LENGTH_SHORT).show();
-                    return;
-                }else{
-                    loginProgressBar.setVisibility(View.VISIBLE);
-                    loginUser(email,password);
+                    if (email.isEmpty() || !email.contains("@") || !email.contains(".")) {
+                        inputEmail.setError(getString(R.string.errorEmail));
+                        return;
+                    } else if (password.isEmpty() || password.length() < 6) {
+                        Toast.makeText(Login.this, R.string.errorPassword, Toast.LENGTH_SHORT).show();
+                        return;
+                    } else {
+                        loginProgressBar.setVisibility(View.VISIBLE);
+                        loginUser(email, password);
+                    }
+
+                } else {
+                    Toast.makeText(Login.this, "connessine assente", Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
         visitor.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +135,7 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (!task.isSuccessful()) {
                             Toast.makeText(Login.this, R.string.errorLogin,Toast.LENGTH_SHORT).show();
-                            loginProgressBar.setVisibility(View.GONE);
+                            loginProgressBar.setVisibility(View.INVISIBLE);
 
                         } else {
                             if(mAuth.getCurrentUser().isEmailVerified()){
@@ -180,4 +195,11 @@ public class Login extends AppCompatActivity {
         LocaleManager.setNewLocale(this, language);
         recreate();
    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+    }
+
+
 }

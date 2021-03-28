@@ -1,4 +1,4 @@
-package uniba.tesi.magicwand.Utils;
+package uniba.tesi.magicwand.fragment;
 
 import android.os.Bundle;
 
@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.firebase.ui.database.SnapshotParser;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
@@ -25,7 +24,6 @@ import uniba.tesi.magicwand.MainActivity;
 import uniba.tesi.magicwand.Model.Question;
 import uniba.tesi.magicwand.R;
 import uniba.tesi.magicwand.ViewHolder.MyViewHolderQuest;
-import uniba.tesi.magicwand.ui.PercorsoRegistrato;
 
 /**
  * A simple {@link Fragment} subclass.

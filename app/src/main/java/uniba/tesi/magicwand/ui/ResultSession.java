@@ -1,4 +1,4 @@
-package uniba.tesi.magicwand.Utils;
+package uniba.tesi.magicwand.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,9 +11,10 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
-import uniba.tesi.magicwand.Aut_Controller.Login;
 import uniba.tesi.magicwand.Model.Player;
 import uniba.tesi.magicwand.R;
+import uniba.tesi.magicwand.Utils.LocaleManager;
+import uniba.tesi.magicwand.Utils.ResultAdapter;
 
 public class ResultSession extends AppCompatActivity {
     /**

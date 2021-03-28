@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.location.LocationManager;
 import android.os.Build;
 import android.preference.PreferenceManager;
 
@@ -11,6 +12,11 @@ import android.preference.PreferenceManager;
 import java.util.Locale;
 
 public class LocaleManager {
+    /**
+     * Debug tag
+     */
+    public static final String TAG = LocationManager.class.getName();
+
     public static final String ENGLISH = "en";
     public static final String ITALIAN = "it";
 

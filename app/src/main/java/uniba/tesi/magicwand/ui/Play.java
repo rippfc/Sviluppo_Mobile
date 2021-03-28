@@ -1,4 +1,4 @@
-package uniba.tesi.magicwand.Utils;
+package uniba.tesi.magicwand.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
@@ -8,6 +8,8 @@ import android.animation.Animator;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.text.InputType;
@@ -30,17 +32,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import uniba.tesi.magicwand.Model.Player;
 import uniba.tesi.magicwand.Model.Question;
 import uniba.tesi.magicwand.R;
+import uniba.tesi.magicwand.Utils.LocaleManager;
 
 public class Play extends AppCompatActivity {
 
@@ -72,6 +77,8 @@ public class Play extends AppCompatActivity {
     private int quesNum;
     private int numberOfPlayer;
     private int currentPlayer;
+    private Double lat;
+    private Double lon;
 
     private ArrayList<Player> playersArray;//Todo da cancellare??
     DateFormat df = new SimpleDateFormat("d MMM yyyy, HH:mm:ss");
@@ -91,6 +98,9 @@ public class Play extends AppCompatActivity {
 
         mSession=getIntent().getStringExtra("Session");
         mUser=getIntent().getStringExtra("User");
+        lat=Double.parseDouble(getIntent().getStringExtra("Latitude"));
+        lon=Double.parseDouble(getIntent().getStringExtra("Longitudine"));
+        Toast.makeText(this, "das"+lat+lon, Toast.LENGTH_SHORT).show();
         setTitle(mSession);
 
         image=(ImageView)findViewById(R.id.icon_player);
@@ -186,7 +196,7 @@ public class Play extends AppCompatActivity {
     }
 
     private void setQuestion() {
-        mQuestion.setText(questionsArray.get(quesNum).getQuestion());
+        mQuestion.setText(questionsArray.get(quesNum).getQuestion()+"?");
         mBt_a.setText(questionsArray.get(quesNum).getOpt_a());
         mBt_b.setText(questionsArray.get(quesNum).getOpt_b());
         mBt_c.setText(questionsArray.get(quesNum).getOpt_c());
@@ -266,12 +276,12 @@ public class Play extends AppCompatActivity {
             playAnim(mBt_d,0,4);
             mId.setText(String.valueOf(quesNum + 1) + "/" + String.valueOf(questionsArray.size()));
         }else {
-            Player max= Collections.max(playersArray);
-            Log.d(TAG,"\nvalue win"+String.valueOf(max.getId()));
+            /*Player max= Collections.max(playersArray);
+            Log.d(TAG,"\nvalue win"+String.valueOf(max.getId()));*/
             mTime.stop();
-            Toast.makeText(this, "il vincitore è:"+String.valueOf(max.getId()), Toast.LENGTH_SHORT).show();
+          /*  Toast.makeText(this, "il vincitore è:"+String.valueOf(max.getId()), Toast.LENGTH_SHORT).show();*/
             saveResult(playersArray);
-            Intent intent=new Intent(this,ResultSession.class);
+            Intent intent=new Intent(this, ResultSession.class);
             Bundle bundle = new Bundle();
             bundle.putParcelableArrayList("risultati", playersArray);
             intent.putExtras(bundle);
@@ -283,7 +293,19 @@ public class Play extends AppCompatActivity {
     private void saveResult(ArrayList<Player> players) {
         //TODO:aggiungi il luogo dove si è svolto
         Map<String,Object> stringObjectMap= new HashMap<>();
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(lat, lon, 1);
+            String cityName = addresses.get(0).getLocality();
+            stringObjectMap.put("city",cityName);
+            Log.d("geo",cityName);
+        }catch (IOException e) {
+           // e.printStackTrace();
+        }
+
         stringObjectMap.put("data",date);
+        stringObjectMap.put("lat",lat);
+        stringObjectMap.put("lon",lon);
         stringObjectMap.put("players",players);
         mDatabase.child("Completed").child(mSession).setValue(stringObjectMap);
     }
@@ -353,7 +375,7 @@ public class Play extends AppCompatActivity {
                         if (value == 0) {
                             switch (numView) {
                                 case 0:
-                                    ((TextView) view).setText(questionsArray.get(quesNum).getQuestion());
+                                    ((TextView) view).setText(questionsArray.get(quesNum).getQuestion()+"?");
                                     break;
                                 case 1:
                                     ((Button) view).setText(questionsArray.get(quesNum).getOpt_a());

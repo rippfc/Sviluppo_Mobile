@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Utils.ResultSession">
+    tools:context=".ui.ResultSession">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="score"
+                android:text="@string/score"
                 android:textColor="@android:color/holo_green_light"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -40,7 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="wrong"
+                android:text="@string/error"
                 android:textColor="@android:color/holo_red_light"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -52,12 +52,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:scrollbars="vertical" />
-
-        <Button
-            android:id="@+id/btn_close"
-            style="@style/button.ui"
-            android:layout_gravity="center"
-            android:text="@string/close" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_close"
+        style="@style/button.ui"
+        android:layout_alignParentBottom="true"
+        android:text="@string/close" />
 
 </RelativeLayout>

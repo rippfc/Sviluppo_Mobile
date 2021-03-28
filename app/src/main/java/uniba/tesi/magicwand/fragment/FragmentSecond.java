@@ -1,10 +1,8 @@
-package uniba.tesi.magicwand;
+package uniba.tesi.magicwand.fragment;
 
 import android.os.Bundle;
 
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,36 +23,41 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-
+import uniba.tesi.magicwand.Model.InfoPath;
 import uniba.tesi.magicwand.Model.Player;
+import uniba.tesi.magicwand.R;
 import uniba.tesi.magicwand.ViewHolder.MyViewHolderPath;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link FragmentShowCompleted#newInstance} factory method to
+ * Use the {@link FragmentSecond#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FragmentShowCompleted extends Fragment {
+public class FragmentSecond extends Fragment {
     /**
      * Debug tag
      */
-    public static final String TAG = FragmentShowCompleted.class.getName();
+    public static final String TAG = FragmentSecond.class.getName();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
+    private String mParam2;
 
-    private View view;
-    private RecyclerView recyclerView;
-    private LinearLayoutManager linearLayoutManager;
-    private FirebaseRecyclerAdapter adapter;
+    private RecyclerView mRecyclerView;
+    private LinearLayoutManager mLinearLayoutManager;
+    private FirebaseRecyclerAdapter mAdapter;
+    private TextView mTextPath;
     private TextView mTextData;
+    private TextView mLat;
+    private TextView mLon;
+    private TextView mCity;
 
-    public FragmentShowCompleted() {
+    public FragmentSecond() {
         // Required empty public constructor
     }
 
@@ -64,13 +67,14 @@ public class FragmentShowCompleted extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment FragmentShowCompleted.
+     * @return A new instance of fragment FragmentSecond.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragmentShowCompleted newInstance(String param1, String param2) {
-        FragmentShowCompleted fragment = new FragmentShowCompleted();
+    public static FragmentSecond newInstance(String param1, String param2) {
+        FragmentSecond fragment = new FragmentSecond();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -79,34 +83,33 @@ public class FragmentShowCompleted extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString("PathComplete");
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
         }
-    }
-
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle(mParam1);
-        ((MainActivity) getActivity()).getFloatingActionButton().hide();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        view= inflater.inflate(R.layout.fragment_show_completed, container, false);
-        mTextData=(TextView)view.findViewById(R.id.date);
+        View view=inflater.inflate(R.layout.fragment_second, container, false);
+        mTextPath=(TextView)view.findViewById(R.id.id_pat_visitor);
+        mTextPath.setText(": "+mParam2);
+        mTextData=(TextView)view.findViewById(R.id.date2);
+        mLat=(TextView)view.findViewById(R.id.id_lat2);
+        mLon=(TextView)view.findViewById(R.id.id_lon2);
+        mCity=(TextView)view.findViewById(R.id.id_city);
         getData();
-        recyclerView=(RecyclerView)view.findViewById(R.id.id_recycler_path_item);
-        linearLayoutManager=new LinearLayoutManager(getContext());
+        mRecyclerView=(RecyclerView)view.findViewById(R.id.id_recycler_path_item2);
+        mLinearLayoutManager=new LinearLayoutManager(getContext());
         fetch(view);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(adapter);
+        mRecyclerView.setLayoutManager(mLinearLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
         return view;
     }
 
+
     private void fetch(View view) {
-        Query query = FirebaseDatabase.getInstance().getReference("Completed").child(mParam1).child("players");
+        Query query = FirebaseDatabase.getInstance().getReference("Completed").child(mParam2).child("players");
         FirebaseRecyclerOptions<Player> options= new FirebaseRecyclerOptions.Builder<Player>()
                 .setQuery(query, new SnapshotParser<Player>() {
                     @NonNull
@@ -117,7 +120,7 @@ public class FragmentShowCompleted extends Fragment {
                     }
                 }).build();
 
-        adapter= new FirebaseRecyclerAdapter<Player, MyViewHolderPath>(options) {
+        mAdapter= new FirebaseRecyclerAdapter<Player, MyViewHolderPath>(options) {
 
             @NonNull
             @Override
@@ -134,28 +137,22 @@ public class FragmentShowCompleted extends Fragment {
                 holder.score.setText(String.valueOf(model.getScore()));
                 holder.wrong.setText(String.valueOf(model.getWrong()));
             }
-            };
-        recyclerView.setAdapter(adapter);
-        }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        adapter.startListening();
+        };
+        mRecyclerView.setAdapter(mAdapter);
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        adapter.stopListening();
-    }
+
 
     private void getData() {
-        DatabaseReference database=FirebaseDatabase.getInstance().getReference().child("Completed").child(mParam1).child("data");
+        DatabaseReference database=FirebaseDatabase.getInstance().getReference().child(mParam1).child(mParam2);
         database.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                mTextData.setText(snapshot.getValue(String.class));
+                InfoPath infoPath= snapshot.getValue(InfoPath.class);
+                mTextData.setText(": "+infoPath.getData());
+                mLat.setText(": "+infoPath.getLat());
+                mLon.setText(String.valueOf(infoPath.getLon()));
+                mCity.setText(": "+infoPath.getCity());
             }
 
             @Override
@@ -166,10 +163,14 @@ public class FragmentShowCompleted extends Fragment {
     }
 
     @Override
-    public void onDetach() {
-        ((MainActivity) getActivity()).getFloatingActionButton().show();
-        super.onDetach();
+    public void onStart() {
+        super.onStart();
+        mAdapter.startListening();
     }
 
-
+    @Override
+    public void onStop() {
+        super.onStop();
+        mAdapter.stopListening();
+    }
 }

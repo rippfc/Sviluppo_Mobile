@@ -52,6 +52,7 @@
     </style>
 
     <style name="button.ui">
+        <item name="android:layout_width">match_parent</item>
         <item name="android:textColor">@color/whiteTextColor</item>
         <item name="android:textSize">20sp</item>
         <item name="android:textStyle">bold</item>
@@ -60,11 +61,9 @@
     </style>
 
     <style name="play">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:padding">40dp</item>
         <item name="android:background">@drawable/circular_button_play</item>
-        <item name="android:layout_weight">1</item>
         <item name="android:layout_margin">5dp</item>
     </style>
 

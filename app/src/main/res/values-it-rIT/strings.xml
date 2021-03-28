@@ -76,4 +76,11 @@
     <string name="no_path">NESSUN PERCORSO PRESENTE</string>
     <string name="add_one">AGGIUNGINE UNO</string>
     <string name="no_path_completed">NESSUN PERCORSO COMPLETATO</string>
+    <string name="error">errori</string>
+    <string name="path">Percorso</string>
+    <string name="completed">Completato</string>
+    <string name="exit">Premi di nuovo indietro per uscire</string>
+    <string name="turn_on">Accendi il GPS</string>
+    <string name="position">Posizione </string>
+    <string name="city">Città</string>
 </resources>

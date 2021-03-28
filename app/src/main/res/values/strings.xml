@@ -102,6 +102,12 @@ c'erano 10 partecipanti-->
     <string name="no_path">NO PATH PRESENT</string>
     <string name="add_one">ADD ONE</string>
     <string name="no_path_completed">NO PATH COMPLETED</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error">errors</string>
+    <string name="path">Path</string>
+    <string name="completed">Completed</string>
+    <string name="exit">Press back again to exit</string>
+    <string name="turn_on">Please turn on GPS</string>
+    <string name="position">Position </string>
+    <string name="city">City</string>
+
 </resources>

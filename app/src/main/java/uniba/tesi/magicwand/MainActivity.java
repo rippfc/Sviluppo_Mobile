@@ -1,12 +1,19 @@
 package uniba.tesi.magicwand;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Looper;
+import android.provider.Settings;
 import android.text.InputType;
 import android.util.Log;
 import android.view.MenuItem;
@@ -17,11 +24,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -37,7 +52,7 @@ import uniba.tesi.magicwand.Aut_Controller.Login;
 import uniba.tesi.magicwand.Create_Quiz.CreateNewSession;
 import uniba.tesi.magicwand.Utils.DialogResetPassword;
 import uniba.tesi.magicwand.Utils.LocaleManager;
-import uniba.tesi.magicwand.Utils.Play;
+import uniba.tesi.magicwand.ui.Play;
 
 public class MainActivity extends AppCompatActivity {
     /**
@@ -49,13 +64,18 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private TextView user,status;
     private ImageView image;
-    FloatingActionButton fab;
-    NavigationView navigationView;
-    View header;
-    DrawerLayout drawer;
-    NavController navController;
+    private FloatingActionButton fab;
+    private NavigationView navigationView;
+    private View header;
+    private DrawerLayout drawer;
+    private NavController navController;
 
-   // public static String CURRENT_TAG = TAG;
+    private FusedLocationProviderClient mFusedLocationClient;
+    private String latitude;
+    private String longitudine;
+    private int PERMISSION_ID = 1;
+
+
     public static String CURRENT_SESSION;
 
 
@@ -69,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         Log.d(TAG, "onCreate()");
 
         setContentView(R.layout.activity_main);
@@ -77,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         fab = findViewById(R.id.fab);
         auth= FirebaseAuth.getInstance();
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -101,6 +121,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+        getLastLocation();
+
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -108,9 +130,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {//azione pulsante
                 switch (navController.getCurrentDestination().getId()){
                     case R.id.fragmentShowSession:
+                        Toast.makeText(MainActivity.this, latitude+"\t"+longitudine, Toast.LENGTH_SHORT).show();
                         Intent intent= new Intent(MainActivity.this, Play.class);
                         intent.putExtra("Session",CURRENT_SESSION);
                         intent.putExtra("User",auth.getCurrentUser().getDisplayName());
+                        intent.putExtra("Latitude",latitude);
+                        intent.putExtra("Longitudine",longitudine);
                         startActivity(intent);
                         break;
                     default:
@@ -266,5 +291,92 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("MissingPermission")
+    private void getLastLocation() {
+        if (checkPermissions()) {
+            if (isLocationEnabled()) {
+                Log.d(TAG, "location is enable");
+                mFusedLocationClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Location> task) {
+                        Location location = task.getResult();
+                        if (location == null) {
+                            requestNewLocationData();
+                        } else {
+                            latitude=String.valueOf(location.getLatitude());
+                            longitudine=String.valueOf(location.getLongitude());
+                        }
+                    }
+                });
+            } else {
+                Toast.makeText(this, R.string.turn_on, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+            }
+        } else {
+            requestPermissions();
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private void requestNewLocationData() {
+        Log.d(TAG, "Initializing LocationRequest" );
+        LocationRequest mLocationRequest = new LocationRequest();
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setInterval(10 * 1000); // 10 seconds
+        mLocationRequest.setFastestInterval(5 * 1000); // 5 seconds
+
+        Log.d(TAG, "setting LocationRequest");
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+        mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
+    }
+
+    private LocationCallback mLocationCallback = new LocationCallback() {
+
+        @Override
+        public void onLocationResult(LocationResult locationResult) {
+            Location mLastLocation = locationResult.getLastLocation();
+            latitude=String.valueOf(mLastLocation.getLatitude());
+            longitudine=String.valueOf(mLastLocation.getLongitude());
+        }
+    };
+
+    // method to check for permissions
+    private boolean checkPermissions() {
+        return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    private void requestPermissions() {
+        Log.d(TAG,"method to request for permissions");
+        ActivityCompat.requestPermissions(this, new String[]{
+                Manifest.permission.ACCESS_COARSE_LOCATION,
+                Manifest.permission.ACCESS_FINE_LOCATION}, PERMISSION_ID);
+    }
+
+    // method to check if location is enabled
+    private boolean isLocationEnabled() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+    }
+
+    @Override
+    public void
+    onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == PERMISSION_ID) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getLastLocation();
+            }
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (checkPermissions()) {
+            getLastLocation();
+        }
+    }
 
 }

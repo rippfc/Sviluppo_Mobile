@@ -53,7 +53,6 @@ public class Register extends AppCompatActivity {
                 //TODO:da sistemare
                 if(nome.isEmpty()||nome.length()<3) {
                     inputName.setError(getString(R.string.errorName));
-                    return;
                 }else if(email.isEmpty()||!(email.contains("@"))||!(email.contains("."))){
                     inputEmail.setError(getString(R.string.errorEmail));
                 }else if(password.isEmpty()||password.length()<6){
@@ -126,5 +125,9 @@ public class Register extends AppCompatActivity {
         });
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        this.finish();
     }
+}
