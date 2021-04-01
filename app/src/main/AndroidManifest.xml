@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uniba.tesi.magicwand">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -14,14 +15,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ui.ResultSession"></activity>
-        <activity android:name=".Aut_Controller.Visitor" />
-        <activity android:name=".Create_Quiz.CreateNewSession" />
+        <activity android:name=".aut_Controller.Visitor" />
+        <activity android:name=".create_Quiz.CreateNewSession" />
         <activity android:name=".ui.Play" android:configChanges="orientation|screenSize"/>
-        <activity android:name=".Aut_Controller.ResetPassword" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Aut_Controller.Register" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".aut_Controller.ResetPassword" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".aut_Controller.Register" android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".MainActivity" android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Aut_Controller.Login"
+            android:name=".aut_Controller.Login"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

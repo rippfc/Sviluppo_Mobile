@@ -1,4 +1,4 @@
-package uniba.tesi.magicwand.Create_Quiz;
+package uniba.tesi.magicwand.create_Quiz;
 
 
 import android.app.AlertDialog;
@@ -28,8 +28,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Map;
 
-import uniba.tesi.magicwand.Utils.LocaleManager;
-import uniba.tesi.magicwand.Model.Question;
+import uniba.tesi.magicwand.utility.LocaleManager;
+import uniba.tesi.magicwand.model.Question;
 import uniba.tesi.magicwand.R;
 
 public class CreateNewSession extends AppCompatActivity {
@@ -88,7 +88,6 @@ public class CreateNewSession extends AppCompatActivity {
             public void onClick(View v) {
                 boolean check = checkQuestions();
 
-                //Todo:da controllare E RIFARLO MEGLIO
                 if(precedentQuestion!=currentQuestion){
                     precedentQuestion++;
                     if(precedentQuestion!=currentQuestion)
@@ -128,20 +127,20 @@ public class CreateNewSession extends AppCompatActivity {
     private void iniNewSession() {
         jsonArray = new JSONArray();
 
-        question=(EditText)findViewById(R.id.questionView);
-        questionNumber=(TextView) findViewById(R.id.txQuestionNumber);
-        aText=(EditText)findViewById(R.id.textViewA);
-        bText=(EditText)findViewById(R.id.textViewB);
-        cText=(EditText)findViewById(R.id.textViewC);
-        dText=(EditText)findViewById(R.id.textViewD);
+        question= findViewById(R.id.questionView);
+        questionNumber= findViewById(R.id.txQuestionNumber);
+        aText= findViewById(R.id.textViewA);
+        bText= findViewById(R.id.textViewB);
+        cText= findViewById(R.id.textViewC);
+        dText= findViewById(R.id.textViewD);
 
-        aRadio=(RadioButton)findViewById(R.id.radioButtonA);
-        bRadio=(RadioButton)findViewById(R.id.radioButtonB);
-        cRadio=(RadioButton)findViewById(R.id.radioButtonC);
-        dRadio=(RadioButton)findViewById(R.id.radioButtonD);
+        aRadio= findViewById(R.id.radioButtonA);
+        bRadio= findViewById(R.id.radioButtonB);
+        cRadio= findViewById(R.id.radioButtonC);
+        dRadio= findViewById(R.id.radioButtonD);
 
-        save=(Button)findViewById(R.id.btn_save);
-        addQuestion =(Button) findViewById(R.id.bt_new_question);
+        save= findViewById(R.id.btn_save);
+        addQuestion = findViewById(R.id.bt_new_question);
         nameSession =getTitle().toString();
 
         //  bt1=(findViewById(R.id.button1));
@@ -199,7 +198,6 @@ public class CreateNewSession extends AppCompatActivity {
         clearAllQuestion();
         Question question1= new Question();
         question1 = listQuest.get(position-1);
-  /*      questionNumber.setText(String.valueOf(question1.getId()));*/
         question.setText(question1.getQuestion());
         aText.setText(question1.getOpt_a());
         bText.setText(question1.getOpt_b());
@@ -321,7 +319,7 @@ public class CreateNewSession extends AppCompatActivity {
 
 
     @Override
-    public void onBackPressed() {//TODO: nel caso vedi di sistemare
+    public void onBackPressed() {
         if(precedentQuestion>1) {
             precedentQuestion--;
             setAllQuest(precedentQuestion);
@@ -341,7 +339,6 @@ public class CreateNewSession extends AppCompatActivity {
         builder.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //Todo: salva sessione
                         checkQuestions();
                         saveQuestion();
                         dialog.dismiss();

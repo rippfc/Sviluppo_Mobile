@@ -1,9 +1,9 @@
-package uniba.tesi.magicwand.Model;
+package uniba.tesi.magicwand.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Player implements Parcelable/*,Comparable<Player>*/ {
+public class Player implements Parcelable {
     int id;
     int score;
     int wrong;
@@ -47,20 +47,7 @@ public class Player implements Parcelable/*,Comparable<Player>*/ {
         this.wrong = wrong;
     }
 
-
-/*
-    @Override
-    public int compareTo(Player o) {
-        if (this.getScore()>o.getScore()){
-            return 1;
-        }else if (this.getScore()<o.getScore()){
-            return -1;
-        }
-        return 0;
-    }
-*/
-
-    @Override
+   @Override
     public int describeContents() {
         return 0;
     }

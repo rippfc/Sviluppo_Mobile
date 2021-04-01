@@ -46,6 +46,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.airbnb.android:lottie:3.6.1'
 //. animazioni di Lottie sono libere di utilizzare file di animazione vettoriale
-    implementation 'com.google.android.gms:play-services-location:18.0.0'//Todo: implementare
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
 
 }

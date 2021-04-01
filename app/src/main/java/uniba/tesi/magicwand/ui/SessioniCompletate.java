@@ -3,11 +3,8 @@ package uniba.tesi.magicwand.ui;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -32,7 +28,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import uniba.tesi.magicwand.R;
-import uniba.tesi.magicwand.ViewHolder.MyViewHolderItem;
+import uniba.tesi.magicwand.viewHolder.MyViewHolderItem;
 
 
 public class SessioniCompletate extends Fragment {
@@ -53,10 +49,10 @@ public class SessioniCompletate extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
         root = inflater.inflate(R.layout.fragment_sessioni_completate, container, false);
-        mlinearLayout=(LinearLayout)root.findViewById(R.id.linearLayoutPathCompleted);
-        progressBar = (ProgressBar)root.findViewById(R.id.progressPathCompleted);
+        mlinearLayout=root.findViewById(R.id.linearLayoutPathCompleted);
+        progressBar = root.findViewById(R.id.progressPathCompleted);
         referenceExists(reference);
-        recyclerView=(RecyclerView)root.findViewById(R.id.listPath);
+        recyclerView=root.findViewById(R.id.listPath);
         linearLayoutManager=new LinearLayoutManager(getContext());
         fetch(root);
         recyclerView.setLayoutManager(linearLayoutManager);

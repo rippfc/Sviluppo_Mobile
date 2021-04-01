@@ -1,4 +1,4 @@
-package uniba.tesi.magicwand.Aut_Controller;
+package uniba.tesi.magicwand.aut_Controller;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,8 +32,8 @@ public class ResetPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
 
-        inputEmail = (EditText) findViewById(R.id.email);
-        btnResetPassword = (Button) findViewById(R.id.btn_reset);
+        inputEmail = findViewById(R.id.email);
+        btnResetPassword = findViewById(R.id.btn_reset);
         mAuth = FirebaseAuth.getInstance();
 
 

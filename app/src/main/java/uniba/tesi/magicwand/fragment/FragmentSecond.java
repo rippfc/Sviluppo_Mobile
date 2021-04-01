@@ -23,10 +23,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import uniba.tesi.magicwand.Model.InfoPath;
-import uniba.tesi.magicwand.Model.Player;
+import uniba.tesi.magicwand.model.InfoPath;
+import uniba.tesi.magicwand.model.Player;
 import uniba.tesi.magicwand.R;
-import uniba.tesi.magicwand.ViewHolder.MyViewHolderPath;
+import uniba.tesi.magicwand.viewHolder.MyViewHolderPath;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -39,12 +39,10 @@ public class FragmentSecond extends Fragment {
      */
     public static final String TAG = FragmentSecond.class.getName();
 
-    // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -69,7 +67,6 @@ public class FragmentSecond extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment FragmentSecond.
      */
-    // TODO: Rename and change types and number of parameters
     public static FragmentSecond newInstance(String param1, String param2) {
         FragmentSecond fragment = new FragmentSecond();
         Bundle args = new Bundle();
@@ -92,14 +89,14 @@ public class FragmentSecond extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_second, container, false);
-        mTextPath=(TextView)view.findViewById(R.id.id_pat_visitor);
+        mTextPath= view.findViewById(R.id.id_pat_visitor);
         mTextPath.setText(": "+mParam2);
-        mTextData=(TextView)view.findViewById(R.id.date2);
-        mLat=(TextView)view.findViewById(R.id.id_lat2);
-        mLon=(TextView)view.findViewById(R.id.id_lon2);
-        mCity=(TextView)view.findViewById(R.id.id_city);
+        mTextData= view.findViewById(R.id.date2);
+        mLat= view.findViewById(R.id.id_lat2);
+        mLon= view.findViewById(R.id.id_lon2);
+        mCity= view.findViewById(R.id.id_city);
         getData();
-        mRecyclerView=(RecyclerView)view.findViewById(R.id.id_recycler_path_item2);
+        mRecyclerView= view.findViewById(R.id.id_recycler_path_item2);
         mLinearLayoutManager=new LinearLayoutManager(getContext());
         fetch(view);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);

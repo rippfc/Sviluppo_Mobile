@@ -16,7 +16,6 @@
         android:name="uniba.tesi.magicwand.ui.PercorsoRegistrato"
         android:label="@string/percorso_registrato"
         tools:layout="@layout/fragment_percorso_registrato" >
-    <!--    //todo: mod1-->
         <action
             android:id="@+id/action_nav_percorso_registrato_to_fragmentShowSession"
             app:destination="@id/fragmentShowSession" />
@@ -38,7 +37,6 @@
         android:label="@string/informazioni"
         tools:layout="@layout/fragment_info" />
 
-  <!--  //todo: mod1-->
     <fragment
         android:id="@+id/fragmentShowSession"
         android:name="uniba.tesi.magicwand.fragment.FragmentShowSession"

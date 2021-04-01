@@ -26,10 +26,10 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import uniba.tesi.magicwand.MainActivity;
-import uniba.tesi.magicwand.Model.InfoPath;
-import uniba.tesi.magicwand.Model.Player;
+import uniba.tesi.magicwand.model.InfoPath;
+import uniba.tesi.magicwand.model.Player;
 import uniba.tesi.magicwand.R;
-import uniba.tesi.magicwand.ViewHolder.MyViewHolderPath;
+import uniba.tesi.magicwand.viewHolder.MyViewHolderPath;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -40,8 +40,7 @@
     <string name="password" translatable="false">Password</string>
 
 
-    <string name="stato">Status:</string>
-    <string name="user" translatable="false">Email:</string>
+    <string name="stato">Status</string>
     <string name="non_connesso">Disconnect</string>
     <string name="connesso">Connected</string>
 
@@ -88,13 +87,12 @@
     <string name="end_session">Do you want to end the session?</string>
     <string name="saved">saved</string>
 
-    <!--plurals puoi usarle quando termini la sessione e salvi il numero di partecipanti
-es: c'era un solo partecipante
-c'erano 10 partecipanti-->
+    <!--plurals -->
     <plurals name="number_of_player">
         <item quantity="one">only one player participates in this session</item>
         <item quantity="other">%d players participate in this session</item>
     </plurals>
+
     <string name="min_max">min 1 max 10</string>
     <string name="player">player </string>
     <string name="visitor">LOGIN AS VISITOR</string>
@@ -109,5 +107,9 @@ c'erano 10 partecipanti-->
     <string name="turn_on">Please turn on GPS</string>
     <string name="position">Position </string>
     <string name="city">City</string>
+    <string name="opt_a">A</string>
+    <string name="opt_b">B</string>
+    <string name="opt_c">C</string>
+    <string name="opt_d">D</string>
 
 </resources>

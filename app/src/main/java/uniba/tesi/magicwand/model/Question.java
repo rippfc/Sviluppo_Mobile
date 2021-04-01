@@ -1,4 +1,4 @@
-package uniba.tesi.magicwand.Model;
+package uniba.tesi.magicwand.model;
 
 import java.io.Serializable;
 

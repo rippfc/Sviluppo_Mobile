@@ -10,7 +10,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,8 +28,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import uniba.tesi.magicwand.R;
-import uniba.tesi.magicwand.ViewHolder.MyViewHolderItem;
-import uniba.tesi.magicwand.ui.Play;
+import uniba.tesi.magicwand.viewHolder.MyViewHolderItem;
 
 
 public class FragmentFirst extends Fragment {
@@ -53,10 +51,10 @@ public class FragmentFirst extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_first, container, false);
 
-        mLinearLayout=(LinearLayout)view.findViewById(R.id.linear_layout_path_completed_visitor);
-        mProgressBar = (ProgressBar)view.findViewById(R.id.progress_path_completed_visitor);
+        mLinearLayout= view.findViewById(R.id.linear_layout_path_completed_visitor);
+        mProgressBar = view.findViewById(R.id.progress_path_completed_visitor);
         referenceExists(mReference);
-        mRecyclerView=(RecyclerView)view.findViewById(R.id.list_path_visitor);
+        mRecyclerView= view.findViewById(R.id.list_path_visitor);
         mLinearLayoutManager=new LinearLayoutManager(getContext());
         fetch(view);
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
@@ -126,6 +124,7 @@ public class FragmentFirst extends Fragment {
                         FragmentManager fragmentManager= getFragmentManager();
                         FragmentTransaction fragmentTransaction= fragmentManager.beginTransaction();
                         fragmentTransaction.replace(R.id.frame_layout,fragmentSecond);
+                        fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
                     }
                 });

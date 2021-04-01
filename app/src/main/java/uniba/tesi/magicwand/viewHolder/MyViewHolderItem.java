@@ -1,4 +1,4 @@
-package uniba.tesi.magicwand.ViewHolder;
+package uniba.tesi.magicwand.viewHolder;
 
 import android.view.View;
 import android.widget.Button;

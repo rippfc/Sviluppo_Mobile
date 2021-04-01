@@ -1,4 +1,4 @@
-package uniba.tesi.magicwand.Aut_Controller;
+package uniba.tesi.magicwand.aut_Controller;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,7 +39,7 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        initUI();//per referenziare
+        initUI();
 
 
         btRegister.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +50,6 @@ public class Register extends AppCompatActivity {
                 String password=inputPassword.getText().toString();
                 String ripetiPass=repeatPassword.getText().toString();
 
-                //TODO:da sistemare
                 if(nome.isEmpty()||nome.length()<3) {
                     inputName.setError(getString(R.string.errorName));
                 }else if(email.isEmpty()||!(email.contains("@"))||!(email.contains("."))){
@@ -68,11 +67,11 @@ public class Register extends AppCompatActivity {
     }
 
     private void initUI() {
-        inputName=(EditText)findViewById(R.id.txNome);
-        inputEmail=(EditText)findViewById(R.id.txEmail);
-        inputPassword=(EditText)findViewById(R.id.txPassword);
-        repeatPassword=(EditText)findViewById(R.id.txRipetiPassword);
-        btRegister=(Button)findViewById(R.id.btn_regiter);
+        inputName= findViewById(R.id.txNome);
+        inputEmail=findViewById(R.id.txEmail);
+        inputPassword=findViewById(R.id.txPassword);
+        repeatPassword=findViewById(R.id.txRipetiPassword);
+        btRegister=findViewById(R.id.btn_regiter);
         mAuth = FirebaseAuth.getInstance();
     }
 

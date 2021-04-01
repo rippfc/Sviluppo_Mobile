@@ -34,11 +34,11 @@ public class Info extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         root = inflater.inflate(R.layout.fragment_info, container, false);
-        version=(TextView) root.findViewById(R.id.version);
+        version= root.findViewById(R.id.version);
         version.setText(getString(R.string.version)+ BuildConfig.VERSION_NAME);
-        button=(Button)root.findViewById(R.id.Button02);
+        button=root.findViewById(R.id.Button02);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

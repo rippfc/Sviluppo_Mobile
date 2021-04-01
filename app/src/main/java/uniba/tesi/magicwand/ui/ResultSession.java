@@ -11,10 +11,10 @@ import android.widget.Button;
 
 import java.util.ArrayList;
 
-import uniba.tesi.magicwand.Model.Player;
+import uniba.tesi.magicwand.model.Player;
 import uniba.tesi.magicwand.R;
-import uniba.tesi.magicwand.Utils.LocaleManager;
-import uniba.tesi.magicwand.Utils.ResultAdapter;
+import uniba.tesi.magicwand.utility.LocaleManager;
+import uniba.tesi.magicwand.utility.ResultAdapter;
 
 public class ResultSession extends AppCompatActivity {
     /**
@@ -39,7 +39,7 @@ public class ResultSession extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result_session);
         result=getIntent().getExtras().getParcelableArrayList("risultati");
-        mClose=(Button)findViewById(R.id.btn_close);
+        mClose=findViewById(R.id.btn_close);
 
         buildRecyclerView();
 
@@ -52,7 +52,7 @@ public class ResultSession extends AppCompatActivity {
     }
 
     private void buildRecyclerView() {
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        mRecyclerView = findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new ResultAdapter(result, this);

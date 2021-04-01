@@ -1,6 +1,5 @@
-package uniba.tesi.magicwand.Utils;
+package uniba.tesi.magicwand.utility;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -32,8 +31,8 @@ public class DialogResetPassword extends Dialog implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reset_password_dialog);
-        inputEmail = (TextView) findViewById(R.id.textView4);
-        btnResetPassword = (Button) findViewById(R.id.btn_reset);
+        inputEmail =  findViewById(R.id.textView4);
+        btnResetPassword =  findViewById(R.id.btn_reset);
         mAuth = FirebaseAuth.getInstance();
         email=mAuth.getCurrentUser().getEmail();
         inputEmail.setText(email);

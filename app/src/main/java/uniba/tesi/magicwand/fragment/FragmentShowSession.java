@@ -21,9 +21,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 
 import uniba.tesi.magicwand.MainActivity;
-import uniba.tesi.magicwand.Model.Question;
+import uniba.tesi.magicwand.model.Question;
 import uniba.tesi.magicwand.R;
-import uniba.tesi.magicwand.ViewHolder.MyViewHolderQuest;
+import uniba.tesi.magicwand.viewHolder.MyViewHolderQuest;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,12 +36,12 @@ public class FragmentShowSession extends Fragment {
      */
     public static final String TAG = FragmentShowSession.class.getName();
 
-    // TODO: Rename parameter arguments, choose names that match
+
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_USER = "param1";
     private static final String ARG_SESSION = "param2";
 
-    // TODO: Rename and change types of parameters
+
     private String mParam1;
     private String mParam2;
 
@@ -65,7 +65,6 @@ public class FragmentShowSession extends Fragment {
      * @param param2 Parameter 2.
      * @return A new instance of fragment FragmentShowSession.
      */
-    // TODO: Rename and change types and number of parameters
     public static FragmentShowSession newInstance(String param1, String param2) {
         FragmentShowSession fragment = new FragmentShowSession();
         Bundle args = new Bundle();
@@ -75,14 +74,12 @@ public class FragmentShowSession extends Fragment {
         return fragment;
     }
 
-    //set title fragment
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ((MainActivity) getActivity()).getSupportActionBar().setTitle(mParam2);
         ((MainActivity) getActivity()).getFloatingActionButton().setImageResource(R.drawable.ic_play_arrow_24);
-       /* floatingActionButton= (FloatingActionButton)getActivity().findViewById(R.id.fab);
-        floatingActionButton.setImageResource(R.drawable.ic_play_arrow_24);*/
     }
 
     @Override
@@ -102,12 +99,11 @@ public class FragmentShowSession extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        /*MainActivity.CURRENT_TAG=TAG;TODO:DA CONTROLLARE SE USARLO O NO*/
-        MainActivity.CURRENT_SESSION=mParam2;//TODO PER SALVARE LA SESSIONE SELEZIONATA E CAMBIARE
+        MainActivity.CURRENT_SESSION=mParam2;
 
         view= inflater.inflate(R.layout.fragment_show_session, container, false);
         // Inflate the layout for this fragment
-        Log.i("info",mParam1+mParam2);
+        Log.i(TAG,mParam1+" "+mParam2);
         recyclerView=view.findViewById(R.id.id_recycler_question_item);
         linearLayoutManager=new LinearLayoutManager(getContext());
         fetch();
@@ -141,7 +137,6 @@ public class FragmentShowSession extends Fragment {
 
             @Override
             protected void onBindViewHolder(@NonNull MyViewHolderQuest holder, int position, @NonNull Question model) {
-                Log.i("item",model.getQuestion()+model.getOpt_a());
                 holder.setmQuestion(model.getQuestion());
                 holder.setMid(String.valueOf(position+1));
                 holder.setmAns1(model.getOpt_a());

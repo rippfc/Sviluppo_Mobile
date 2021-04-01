@@ -1,4 +1,4 @@
-package uniba.tesi.magicwand.Aut_Controller;
+package uniba.tesi.magicwand.aut_Controller;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,10 +23,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.net.InetAddress;
 import java.util.Locale;
 
-import uniba.tesi.magicwand.Utils.LocaleManager;
+import uniba.tesi.magicwand.utility.LocaleManager;
 import uniba.tesi.magicwand.MainActivity;
 import uniba.tesi.magicwand.R;
 
@@ -58,21 +57,20 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         try{
             FirebaseDatabase.getInstance().setPersistenceEnabled(true);
             Log.d(TAG,FirebaseDatabase.getInstance().toString());
         }catch (Exception e){
-            Log.d(TAG,"SetPresistenceEnabled:Fail"+FirebaseDatabase.getInstance().toString());
+            Log.d(TAG,"SetPresistenceEnabled:Fail",e);
             e.printStackTrace();
         }
-        //FirebaseDatabase.getInstance().setPersistenceEnabled(true);//Todo:abilitare offline
         setContentView(R.layout.activity_login);
 
         initUI();
 
 
         if (mAuth.getCurrentUser() != null) {
-
             if(mAuth.getCurrentUser().isEmailVerified()) {
                 startActivity(new Intent(Login.this, MainActivity.class));
                 finish();
@@ -168,7 +166,6 @@ public class Login extends AppCompatActivity {
     }
 
     private void checkFlag() {
-       // Toast.makeText(this, Locale.getDefault().getLanguage(), Toast.LENGTH_SHORT).show();
         if (Locale.getDefault().getLanguage().equals("en")){
             flagGb.setVisibility(View.GONE);
             flagIt.setVisibility(View.VISIBLE);

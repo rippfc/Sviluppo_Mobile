@@ -1,4 +1,4 @@
-package uniba.tesi.magicwand.Utils;
+package uniba.tesi.magicwand.utility;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import uniba.tesi.magicwand.Model.Player;
+import uniba.tesi.magicwand.model.Player;
 import uniba.tesi.magicwand.R;
+import uniba.tesi.magicwand.viewHolder.ResultViewHolder;
 
-public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultViewHolder> {
+public class ResultAdapter extends RecyclerView.Adapter<ResultViewHolder> {
     public ArrayList<Player> playerArrayList;
     private final Context mContext;
 
@@ -25,8 +26,8 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
 
     @NonNull
     @Override
-    public ResultAdapter.ResultViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.player_item,parent,false);//LayoutInflater.from(parent.getContext()).inflate(R.layout.example_item, parent, false);
+    public ResultViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.player_item,parent,false);
         return new ResultViewHolder(v);
     }
     @Override
@@ -34,7 +35,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
         return playerArrayList.size();
     }
     @Override
-    public void onBindViewHolder(@NonNull ResultAdapter.ResultViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ResultViewHolder holder, int position) {
         final Player currentItem = playerArrayList.get(position);
         final int[] colors = mContext.getResources().getIntArray(R.array.paint);
         holder.mTextView1.setText(mContext.getString(R.string.player)+" "+String.valueOf(currentItem.getId()+1));
@@ -45,20 +46,7 @@ public class ResultAdapter extends RecyclerView.Adapter<ResultAdapter.ResultView
 
 
 
-    public static class ResultViewHolder extends RecyclerView.ViewHolder {
-        public TextView mTextView1;
-        public TextView mTextView2;
-        public TextView mTextView3;
 
-        public ResultViewHolder(View itemView) {
-            super(itemView);
-            mTextView1 = itemView.findViewById(R.id.textViewid);
-            mTextView2 = itemView.findViewById(R.id.textViewscore);
-            mTextView3 = itemView.findViewById(R.id.textViewwrong);
-        }
-
-
-    }
 
 
 }

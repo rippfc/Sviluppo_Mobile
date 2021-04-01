@@ -42,10 +42,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import uniba.tesi.magicwand.Model.Player;
-import uniba.tesi.magicwand.Model.Question;
+import uniba.tesi.magicwand.model.Player;
+import uniba.tesi.magicwand.model.Question;
 import uniba.tesi.magicwand.R;
-import uniba.tesi.magicwand.Utils.LocaleManager;
+import uniba.tesi.magicwand.utility.LocaleManager;
 
 public class Play extends AppCompatActivity {
 
@@ -80,7 +80,7 @@ public class Play extends AppCompatActivity {
     private Double lat;
     private Double lon;
 
-    private ArrayList<Player> playersArray;//Todo da cancellare??
+    private ArrayList<Player> playersArray;
     DateFormat df = new SimpleDateFormat("d MMM yyyy, HH:mm:ss");
     String date = df.format(Calendar.getInstance().getTime());
 
@@ -100,22 +100,21 @@ public class Play extends AppCompatActivity {
         mUser=getIntent().getStringExtra("User");
         lat=Double.parseDouble(getIntent().getStringExtra("Latitude"));
         lon=Double.parseDouble(getIntent().getStringExtra("Longitudine"));
-        Toast.makeText(this, "das"+lat+lon, Toast.LENGTH_SHORT).show();
         setTitle(mSession);
 
-        image=(ImageView)findViewById(R.id.icon_player);
-        mPlayer = (TextView)findViewById(R.id.id_player);
-        mTime = (Chronometer)findViewById(R.id.text_time);
-        mPoint = (TextView)findViewById(R.id.points);
-        mQuestion = (TextView)findViewById(R.id.domanda);
-        mId = (TextView)findViewById(R.id.quest_num);
-        mBt_a = (Button) findViewById(R.id.buttonA);
-        mBt_b = (Button)findViewById(R.id.buttonB);
-        mBt_c = (Button)findViewById(R.id.buttonC);
-        mBt_d = (Button)findViewById(R.id.buttonD);
-        mScore=(TextView)findViewById(R.id.points);
-        mParticipant=(TextView)findViewById(R.id.participant);
-        lottieAnimationView=(LottieAnimationView)findViewById(R.id.animation_lt);
+        image=findViewById(R.id.icon_player);
+        mPlayer = findViewById(R.id.id_player);
+        mTime = findViewById(R.id.text_time);
+        mPoint = findViewById(R.id.points);
+        mQuestion = findViewById(R.id.domanda);
+        mId = findViewById(R.id.quest_num);
+        mBt_a =  findViewById(R.id.buttonA);
+        mBt_b = findViewById(R.id.buttonB);
+        mBt_c = findViewById(R.id.buttonC);
+        mBt_d = findViewById(R.id.buttonD);
+        mScore=findViewById(R.id.points);
+        mParticipant=findViewById(R.id.participant);
+        lottieAnimationView=findViewById(R.id.animation_lt);
 
         mDatabase=FirebaseDatabase.getInstance().getReference();
         playersArray= new ArrayList<>();
@@ -127,7 +126,7 @@ public class Play extends AppCompatActivity {
 
     }
 
-    private void alertNumberPlayer() {//todo:controllo sui numeri inseriti e correggi tutti i dialog in questo modo
+    private void alertNumberPlayer() {
         final EditText inputText = new EditText(this);
         inputText.setInputType(InputType.TYPE_CLASS_NUMBER);
         inputText.setHint(R.string.min_max);
@@ -144,7 +143,6 @@ public class Play extends AppCompatActivity {
 
         final android.app.AlertDialog alertDialog = builder.create();
         alertDialog.show();
-        //sovrascrive il metodo clik
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -185,12 +183,11 @@ public class Play extends AppCompatActivity {
                     Question question = data.getValue(Question.class);
                     questionsArray.add(question);
                 }
-                Log.d(TAG,String.valueOf(questionsArray.size()));
                 setQuestion();
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Log.i(TAG, "onCancelled: Error: " + error.getMessage());
+                Log.d(TAG, "onCancelled: Error: " + error.getMessage());
             }
         });
     }
@@ -205,14 +202,14 @@ public class Play extends AppCompatActivity {
     }
 
     private void setPlayer(int input) {
-        Log.d(TAG, "patecipanti: "+ input);//plurals
+        Log.d(TAG, "patecipanti: "+ input);
+        //plurals
         String players = getResources().getQuantityString(R.plurals.number_of_player,input,input);
         mParticipant.setText(players);
         playAnim(mPlayer,0,5);
 
-        for (int i=0; i<input;i++){//Todo da cancellare??
-            playersArray.add(new Player(i,0,0));//Todo da cancellare??
-            Log.i(TAG, "size"+String.valueOf(playersArray.size())+" get id\t"+playersArray.get(i).getId());//Todo da cancellare??
+        for (int i=0; i<input;i++){
+            playersArray.add(new Player(i,0,0));
         }
     }
 
@@ -246,7 +243,6 @@ public class Play extends AppCompatActivity {
     private void checkPlayer(int cp, boolean check) {
         if (check) {
             playersArray.get(cp).setScore(playersArray.get(cp).getScore() + 1);
-            //changeQuestions();
         }else {
             playersArray.get(cp).setWrong(playersArray.get(cp).getWrong() + 1);
         }
@@ -258,17 +254,12 @@ public class Play extends AppCompatActivity {
         mPoint.setText(String.valueOf(playersArray.get(currentPlayer).getScore()));
         playAnim(mPlayer,0,5);
         playAnim(image,0,6);
-        Log.d(TAG, "current " + cp
-                + " numberplayer " + numberOfPlayer
-                + " value of player" + String.valueOf(playersArray.get(cp).getId())
-                + "\tcorrette\t" + String.valueOf(playersArray.get(cp).getScore())
-                + "\terrori\t" + String.valueOf(playersArray.get(cp).getWrong()));
     }
 
     private void changeQuestions() {
         if( quesNum < questionsArray.size() - 1){
             quesNum++;
-            Log.i(TAG,quesNum+"\tarray\t"+questionsArray.size());
+            Log.i(TAG,"changeQuestions");
             playAnim(mQuestion,0,0);
             playAnim(mBt_a,0,1);
             playAnim(mBt_b,0,2);
@@ -276,10 +267,7 @@ public class Play extends AppCompatActivity {
             playAnim(mBt_d,0,4);
             mId.setText(String.valueOf(quesNum + 1) + "/" + String.valueOf(questionsArray.size()));
         }else {
-            /*Player max= Collections.max(playersArray);
-            Log.d(TAG,"\nvalue win"+String.valueOf(max.getId()));*/
             mTime.stop();
-          /*  Toast.makeText(this, "il vincitore è:"+String.valueOf(max.getId()), Toast.LENGTH_SHORT).show();*/
             saveResult(playersArray);
             Intent intent=new Intent(this, ResultSession.class);
             Bundle bundle = new Bundle();
@@ -291,23 +279,21 @@ public class Play extends AppCompatActivity {
     }
 
     private void saveResult(ArrayList<Player> players) {
-        //TODO:aggiungi il luogo dove si è svolto
-        Map<String,Object> stringObjectMap= new HashMap<>();
+        Map<String,Object> objectMap= new HashMap<>();
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         try {
             List<Address> addresses = geocoder.getFromLocation(lat, lon, 1);
             String cityName = addresses.get(0).getLocality();
-            stringObjectMap.put("city",cityName);
-            Log.d("geo",cityName);
+            objectMap.put("city",cityName);
+            Log.d(TAG,cityName);
         }catch (IOException e) {
-           // e.printStackTrace();
+            Log.e(TAG, "exception", e);
         }
-
-        stringObjectMap.put("data",date);
-        stringObjectMap.put("lat",lat);
-        stringObjectMap.put("lon",lon);
-        stringObjectMap.put("players",players);
-        mDatabase.child("Completed").child(mSession).setValue(stringObjectMap);
+        objectMap.put("data",date);
+        objectMap.put("lat",lat);
+        objectMap.put("lon",lon);
+        objectMap.put("players",players);
+        mDatabase.child("Completed").child(mSession).setValue(objectMap);
     }
 
 
@@ -322,7 +308,7 @@ public class Play extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.refresh:
-                Log.d(TAG, "Clicked on refresh!");// refresch senza ricaricare tutto
+                Log.d(TAG, "Clicked on refresh!");
                 recreate();
                 return true;
             case R.id.finish:

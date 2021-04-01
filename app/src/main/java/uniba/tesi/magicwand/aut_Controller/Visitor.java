@@ -1,4 +1,4 @@
-package uniba.tesi.magicwand.Aut_Controller;
+package uniba.tesi.magicwand.aut_Controller;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import uniba.tesi.magicwand.R;
-import uniba.tesi.magicwand.Utils.LocaleManager;
+import uniba.tesi.magicwand.utility.LocaleManager;
 import uniba.tesi.magicwand.fragment.FragmentFirst;
 
 public class Visitor extends AppCompatActivity {
@@ -20,8 +20,8 @@ public class Visitor extends AppCompatActivity {
      */
     public static final String TAG = Visitor.class.getName();
 
-    FrameLayout frameLayout;
-    Button button;
+    private FrameLayout frameLayout;
+    private Button button;
 
 
     @Override
@@ -34,7 +34,7 @@ public class Visitor extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visitor);
-        frameLayout=(FrameLayout)findViewById(R.id.frame_layout);
+        frameLayout= findViewById(R.id.frame_layout);
         button=findViewById(R.id.close_visitor_activity);
 
 

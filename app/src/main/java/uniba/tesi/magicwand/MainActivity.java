@@ -48,10 +48,10 @@ import androidx.appcompat.widget.Toolbar;
 
 import java.util.Locale;
 
-import uniba.tesi.magicwand.Aut_Controller.Login;
-import uniba.tesi.magicwand.Create_Quiz.CreateNewSession;
-import uniba.tesi.magicwand.Utils.DialogResetPassword;
-import uniba.tesi.magicwand.Utils.LocaleManager;
+import uniba.tesi.magicwand.aut_Controller.Login;
+import uniba.tesi.magicwand.create_Quiz.CreateNewSession;
+import uniba.tesi.magicwand.utility.DialogResetPassword;
+import uniba.tesi.magicwand.utility.LocaleManager;
 import uniba.tesi.magicwand.ui.Play;
 
 public class MainActivity extends AppCompatActivity {
@@ -62,7 +62,9 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private FirebaseAuth auth;
-    private TextView user,status;
+    private TextView user;
+    private TextView emailUser;
+    private TextView status;
     private ImageView image;
     private FloatingActionButton fab;
     private NavigationView navigationView;
@@ -104,8 +106,9 @@ public class MainActivity extends AppCompatActivity {
         header = navigationView.getHeaderView(0);//per settare stato connessine e image
         status=header.findViewById(R.id.txStatus);
         user=header.findViewById(R.id.txUser);
+        emailUser=header.findViewById(R.id.id_name_user);
         image=header.findViewById(R.id.imageStatus);
-        setTextUser(user,status,image);
+        setTextUser(user,emailUser,status,image);
 
 
         // Passing each menu ID as a set of Ids because each
@@ -127,10 +130,9 @@ public class MainActivity extends AppCompatActivity {
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {//azione pulsante
+            public void onClick(View view) {
                 switch (navController.getCurrentDestination().getId()){
                     case R.id.fragmentShowSession:
-                        Toast.makeText(MainActivity.this, latitude+"\t"+longitudine, Toast.LENGTH_SHORT).show();
                         Intent intent= new Intent(MainActivity.this, Play.class);
                         intent.putExtra("Session",CURRENT_SESSION);
                         intent.putExtra("User",auth.getCurrentUser().getDisplayName());
@@ -157,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.nav_info:
-                        fab.hide();//nascondere fab
+                        fab.hide();
                         break;
 
                     case R.id.nav_logout:
@@ -168,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     default:
-                        fab.show();//per mostrare fab
+                        fab.show();
                 }
                 //This is for maintaining the behavior of the Navigation view
                 NavigationUI.onNavDestinationSelected(item,navController);
@@ -230,15 +232,14 @@ public class MainActivity extends AppCompatActivity {
         return fab;
     }
 
-    private void setTextUser(TextView txS, TextView txU, ImageView im) {//verifica lo stato dell'utente e la connessione al dispositivo
+    private void setTextUser(TextView userEmail, TextView txS, TextView txU, ImageView im) {//verifica lo stato dell'utente e la connessione al dispositivo
         txS.setText(auth.getCurrentUser().getDisplayName().toUpperCase());//mostra il nome con cui ci si è registrato
-        //txU.setText(auth.getCurrentUser().getEmail());  mostra l'email
-        im.setImageResource(R.drawable.ic_connection_fail);//setta l'immagine di connessione al dispositivo
-
+        userEmail.setText(auth.getCurrentUser().getEmail()); // mostra l'email
+     //   im.setImageResource(R.drawable.ic_connection_fail);
     }
 
     private void setNewLocale(Context mContext, String language) {
-        if (Locale.getDefault().getLanguage().equals(language)){//todo: verifica nel metodo
+        if (Locale.getDefault().getLanguage().equals(language)){
             Toast.makeText(MainActivity.this, R.string.language_select, Toast.LENGTH_SHORT).show();
         }else{
             LocaleManager.setNewLocale(this, language);
@@ -341,7 +342,6 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    // method to check for permissions
     private boolean checkPermissions() {
         return ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED;
     }
@@ -363,7 +363,6 @@ public class MainActivity extends AppCompatActivity {
     public void
     onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
         if (requestCode == PERMISSION_ID) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getLastLocation();

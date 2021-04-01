@@ -1,9 +1,9 @@
-package uniba.tesi.magicwand.Model;
+package uniba.tesi.magicwand.model;
 
 public class InfoPath {
     String data;
-     Double lat;
-     Double lon;
+    Double lat;
+    Double lon;
     String city;
 
     public InfoPath() {

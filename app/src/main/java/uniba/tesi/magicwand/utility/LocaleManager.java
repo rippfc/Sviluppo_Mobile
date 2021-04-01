@@ -1,11 +1,10 @@
-package uniba.tesi.magicwand.Utils;
+package uniba.tesi.magicwand.utility;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.location.LocationManager;
-import android.os.Build;
 import android.preference.PreferenceManager;
 
 
@@ -64,13 +63,9 @@ public class LocaleManager {
         Locale.setDefault(locale);
         Resources res = context.getResources();
         Configuration config = new Configuration(res.getConfiguration());
-        /*if (Build.VERSION.SDK_INT >= 17) {//superfluo perchè la versione minima per far girare l'app è superiore
-            config.setLocale(locale);
-            context = context.createConfigurationContext(config);
-        } else {*/
-            config.locale = locale;
-            res.updateConfiguration(config, res.getDisplayMetrics());
-       // }
+        config.locale = locale;
+        res.updateConfiguration(config, res.getDisplayMetrics());
+
         return context;
     }
 

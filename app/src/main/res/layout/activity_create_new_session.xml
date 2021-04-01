@@ -42,7 +42,7 @@
                         <TextView
                             android:id="@+id/txQuestionNumber"
                             style="@style/textTitle"
-                            android:layout_width="wrap_content"
+                            android:layout_width="10dp"
                             android:layout_height="wrap_content"
                             android:layout_margin="10dp"
                             android:text="@string/_1" />
@@ -74,7 +74,7 @@
                     android:id="@+id/radioButtonA"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="A" />
+                    android:text="@string/opt_a" />
 
                 <EditText
                     android:id="@+id/textViewA"
@@ -104,7 +104,7 @@
                     android:id="@+id/radioButtonB"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="B" />
+                    android:text="@string/opt_b" />
 
                 <EditText
                     android:id="@+id/textViewB"
@@ -131,7 +131,7 @@
                     android:id="@+id/radioButtonC"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="C" />
+                    android:text="@string/opt_c" />
 
                 <EditText
                     android:id="@+id/textViewC"
@@ -159,7 +159,7 @@
                     android:id="@+id/radioButtonD"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="D" />
+                    android:text="@string/opt_d" />
 
                 <EditText
                     android:id="@+id/textViewD"

@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,7 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-import uniba.tesi.magicwand.ViewHolder.MyViewHolderItem;
+import uniba.tesi.magicwand.viewHolder.MyViewHolderItem;
 import uniba.tesi.magicwand.R;
 
 public class PercorsoRegistrato extends Fragment {
@@ -44,7 +43,7 @@ public class PercorsoRegistrato extends Fragment {
     private LinearLayoutManager linearLayoutManager;
     private FirebaseRecyclerAdapter adapter;
     private ProgressBar progressBar;
-    private LinearLayout mlinearLayout;
+    private LinearLayout mLinearLayout;
     private View root;
 
 
@@ -53,7 +52,7 @@ public class PercorsoRegistrato extends Fragment {
         root = inflater.inflate(R.layout.fragment_percorso_registrato, container, false);
         progressBar = (ProgressBar)root.findViewById(R.id.progressBarPr);
         auth = FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
-        mlinearLayout=(LinearLayout)root.findViewById(R.id.linearLayoutPath);
+        mLinearLayout =(LinearLayout)root.findViewById(R.id.linearLayoutPath);
         referenceExists(auth);
 
         buildRecyclerView();
@@ -61,7 +60,7 @@ public class PercorsoRegistrato extends Fragment {
     }
 
     private void buildRecyclerView() {
-        recyclerView=(RecyclerView)root.findViewById(R.id.list);
+        recyclerView=root.findViewById(R.id.list);
         linearLayoutManager=new LinearLayoutManager(getContext());
         fetch(root);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -76,7 +75,7 @@ public class PercorsoRegistrato extends Fragment {
                 if (snapshot.exists()) {
                     Log.d(TAG,"riferimento esiste");
                 } else {
-                    mlinearLayout.setVisibility(View.VISIBLE);
+                    mLinearLayout.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.GONE);
                     Log.d(TAG,"riferimento non esiste");
                 }
@@ -112,7 +111,7 @@ public class PercorsoRegistrato extends Fragment {
             @Override
             protected void onBindViewHolder(@NonNull MyViewHolderItem holder, int position, @NonNull final String model) {
                 progressBar.setVisibility(View.GONE);
-                mlinearLayout.setVisibility(View.GONE);
+                mLinearLayout.setVisibility(View.GONE);
                 holder.setNameSession(model);
                 holder.nameSession.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -130,15 +129,11 @@ public class PercorsoRegistrato extends Fragment {
                 holder.button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        //todo: mod1
+
                         Bundle bundle = new Bundle();
                         bundle.putString("Session",model);
                         bundle.putString("User",auth);
                         Navigation.findNavController(view).navigate(R.id.action_nav_percorso_registrato_to_fragmentShowSession,bundle);
-                        /*Intent intent= new Intent(getContext(), Play.class);
-                        intent.putExtra("Session",model);
-                        intent.putExtra("User",auth);
-                        startActivity(intent);*/
                     }
                 });
             }
